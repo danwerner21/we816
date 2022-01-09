@@ -1,0 +1,51 @@
+2021-07-25 14:54:45.929 [main] INFO  eu.mihosoft.freerouting.FreeRouting - Freerouting application is started.
+2021-07-25 14:54:45.976 [main] INFO  eu.mihosoft.freerouting.FreeRouting - Opening 'sbc.dsn'...
+2021-07-25 14:54:46.422 [main] WARN  eu.mihosoft.freerouting.FreeRouting - Warning in IntPoint: p_x or p_y to big
+2021-07-25 14:54:46.454 [main] WARN  eu.mihosoft.freerouting.FreeRouting - Warning in IntPoint: p_x or p_y to big
+2021-07-25 14:54:46.501 [main] WARN  eu.mihosoft.freerouting.FreeRouting - Warning in IntPoint: p_x or p_y to big
+2021-07-25 14:54:46.548 [main] WARN  eu.mihosoft.freerouting.FreeRouting - Warning in IntPoint: p_x or p_y to big
+2021-07-25 14:54:47.175 [main] INFO  eu.mihosoft.freerouting.FreeRouting - Opening 'sbc.rules'...
+2021-07-25 14:54:52.609 [main] WARN  eu.mihosoft.freerouting.FreeRouting - RulesFile.read: design_name not matching
+2021-07-25 14:54:52.667 [main] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'MainApplication.main()' was performed in 6.80 seconds.
+2021-07-25 14:56:30.468 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 14:56:30.636 [Thread-0] WARN  eu.mihosoft.freerouting.FreeRouting - Warning in IntPoint: p_x or p_y to big
+2021-07-25 14:56:30.704 [Thread-0] WARN  eu.mihosoft.freerouting.FreeRouting - Warning in IntPoint: p_x or p_y to big
+2021-07-25 14:56:30.736 [Thread-0] WARN  eu.mihosoft.freerouting.FreeRouting - Warning in IntPoint: p_x or p_y to big
+2021-07-25 14:56:30.782 [Thread-0] WARN  eu.mihosoft.freerouting.FreeRouting - Warning in IntPoint: p_x or p_y to big
+2021-07-25 15:04:35.613 [Thread-0] WARN  eu.mihosoft.freerouting.FreeRouting - CalcFromSide: start corner not found
+2021-07-25 15:04:35.695 [Thread-0] WARN  eu.mihosoft.freerouting.FreeRouting - CalcFromSide: start corner not found
+2021-07-25 15:04:35.739 [Thread-0] WARN  eu.mihosoft.freerouting.FreeRouting - CalcFromSide: start corner not found
+2021-07-25 15:04:35.785 [Thread-0] WARN  eu.mihosoft.freerouting.FreeRouting - CalcFromSide: start corner not found
+2021-07-25 15:06:51.081 [Thread-0] WARN  eu.mihosoft.freerouting.FreeRouting - CalcFromSide: start corner not found
+2021-07-25 15:15:36.717 [Thread-0] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouter.autoroute_pass #99999 on board '0aaa35e63417e7dfd7c9a69846c31c85' making 2001 changes' was performed in 1145.88 seconds.
+2021-07-25 15:15:36.867 [Thread-0] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 1146.35 seconds.
+2021-07-25 15:35:42.936 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:35:43.034 [Thread-1] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.06 seconds.
+2021-07-25 15:35:46.705 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:35:46.799 [Thread-2] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.05 seconds.
+2021-07-25 15:35:47.426 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:35:47.520 [Thread-3] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.05 seconds.
+2021-07-25 15:35:48.046 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:35:48.132 [Thread-4] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.05 seconds.
+2021-07-25 15:35:48.619 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:35:48.713 [Thread-5] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.06 seconds.
+2021-07-25 15:35:49.168 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:35:49.262 [Thread-6] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.06 seconds.
+2021-07-25 15:35:49.750 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:35:49.842 [Thread-7] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.06 seconds.
+2021-07-25 15:35:52.369 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:35:52.463 [Thread-8] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.05 seconds.
+2021-07-25 15:35:56.889 [AWT-EventQueue-0] WARN  eu.mihosoft.freerouting.FreeRouting - ShapeSearchTree.overlaps_with_clearance: p_shape is not bounded
+2021-07-25 15:35:56.952 [AWT-EventQueue-0] WARN  eu.mihosoft.freerouting.FreeRouting - ShapeSearchTree.overlaps_with_clearance: p_shape is not bounded
+2021-07-25 15:35:58.945 [AWT-EventQueue-0] WARN  eu.mihosoft.freerouting.FreeRouting - ShapeSearchTree.overlaps_with_clearance: p_shape is not bounded
+2021-07-25 15:35:59.008 [AWT-EventQueue-0] WARN  eu.mihosoft.freerouting.FreeRouting - ShapeSearchTree.overlaps_with_clearance: p_shape is not bounded
+2021-07-25 15:36:01.753 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:36:01.847 [Thread-9] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.06 seconds.
+2021-07-25 15:36:03.087 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:36:03.184 [Thread-10] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.05 seconds.
+2021-07-25 15:36:03.966 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:36:04.060 [Thread-11] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.06 seconds.
+2021-07-25 15:36:19.569 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:36:19.663 [Thread-12] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.05 seconds.
+2021-07-25 15:36:20.542 [AWT-EventQueue-0] INFO  eu.mihosoft.freerouting.FreeRouting - Generating snapshot
+2021-07-25 15:36:20.628 [Thread-13] TRACE eu.mihosoft.freerouting.FreeRouting - Method 'BatchAutorouterThread.thread_action()' was performed in 0.05 seconds.

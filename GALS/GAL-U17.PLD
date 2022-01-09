@@ -1,0 +1,43 @@
+Name     GAL-U17 ;
+PartNo   00 ;
+Date     8/20/2017 ;
+Revision 01 ;
+Designer Dan Werner ;
+Company  a ;
+Assembly None ;
+Location  ;
+Device   g16v8a ;
+
+PIN   1   = phi         ; /*                */ 
+PIN   2   = rw          ; /*                */ 
+PIN   3   = vda         ; /*                */ 
+PIN   4   = vpa         ; /*                */ 
+PIN   5   = !ml         ; /*                */ 
+PIN   6   = !io         ; /*                */ 
+PIN   7   = bus        ; /*                */ 
+PIN   8   = !vp         ; /*                */ 
+
+PIN   17  = !busak  	; /*                                 */ 
+PIN   16  = !rd     	; /*                                 */ 
+PIN   15  = !wr     	; /*                                 */ 
+PIN   14  = !data_dir	; /*                                 */ 
+
+rd =  phi & rw ;
+wr =  phi & !rw ;
+busak = 'b'0 ;
+data_dir = bus # phi # !rw  ;  
+
+
+/*****
+PIN   9   = !busrq      ; 
+PIN   19  = !mreq   	; 
+PIN   18  = !iorq   	; 
+PIN   13  = !m1	; 
+mreq = !io & bus & phi ;
+iorq = !bus & io & phi ;
+m1 = vda & vpa ;
+data_dir = !bus ;
+busak = phi & (bus # io) ; 
+
+*/
+

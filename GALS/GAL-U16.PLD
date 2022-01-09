@@ -1,0 +1,69 @@
+Name     GAL-U16 ;
+PartNo   00 ;
+Date     9/19/2017 ;
+Revision 04 ;
+Designer John Coffman ;
+Company  Coffman Consulting ;
+Assembly None ;
+Location  ;
+Device   g20v8a ;
+
+/* *************** INPUT PINS *********************/
+PIN [2..11] = [a10..19] ; /* Upper 9 address*/
+PIN   1   = a21         ; /*                */
+PIN   13  = a22         ; /*                                 */
+PIN   14  = a20         ; /*                                 */
+PIN   23  = a23         ; /*                                 */
+PIN   21  = a8          ; /*                                 */
+PIN   22  = a9          ; /*                                 */
+PIN   20  = small       ; /* 1=small (16K), 0=large (32K)    */
+
+
+/* *************** OUTPUT PINS *********************/
+PIN   15  = !cs_rom     ; /*                                 */
+PIN   16  = !cs_ram     ; /*                                 */
+PIN   17  = !io         ; /*                                 */
+PIN   18  = !fbus       ; /*                                 */
+PIN   19  = !o_rom      ; /*                                 */
+
+
+/* ****  MEMORY MAP ******
+
+000000..007FFF	LOW RAM < 32K
+008000..0080FF	I/O AREA (BOARD AND EXTERNAL)
+008100..00FFFF	32K ROM - 256 FOR I/O
+010000..07FFFF	HIGH RAM > 64K
+080000..FEFFFF	EXTERNAL ECB BUS RAM
+FF0000..FFFFFF OPTION ROM
+
+Revised:
+ 00FE00..00FEFF	I/O ARES -- FIXED; DOES NOT DEPEND ON ROM SIZE
+ROMSTRT..00FFFF	ROM:  EXCLUDING THE I/O AREA
+
+LARGE ROMSTRT = 008000	32K
+SMALL ROMSTRT = 00C000	16K
+
+************************ */
+
+z1	=	!a23 & !a22 & !a21 & !a20			;
+z0	=	!a19 & !a18 & !a17 & !a16			;
+
+hi_ram	=	z1 & !a19 & (a18 # a17 # a16)		;	/* 010000..07FFFF */
+
+rom_area	=  a15 & (!small #  small & a14 & a13)	;    /*  8k small ROM */
+/*rom_area	=  a15 & (!small #  small & a14      )	;    /* 16k small ROM */
+/*rom_area	=  a15						;    /* 32k fixed ROM */
+
+
+io_area	=  a15 & a14 & a13 & a12 & a11 & a10 & a9 & !a8		;
+
+cs_ram	=	z1 & z0 & !rom_area   #
+		hi_ram			;
+
+cs_rom	=	z1 & z0 & rom_area & !io		;
+o_rom	=	a23 & a22 & a21 & a20;
+
+io	=	z1 & z0 & io_area		;
+
+/*fbus =  !(cs_rom # cs_ram # io) ; */
+fbus	=	!z1 # a19					;

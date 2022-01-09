@@ -1,0 +1,33 @@
+%SIGNAL
+PIN   2 =  a0 
+PIN   3 =  a1 
+PIN   4 =  a2 
+PIN   5 =  a3 
+PIN   6 =  a4 
+PIN   7 =  a5 
+PIN   8 =  a6 
+PIN   9 =  a7 
+PIN  19 = !cs_uart 
+PIN  17 = !cs_vdp 
+PIN  15 = !cs_via1 
+PIN  14 = !cs_via2 
+PIN   1 = !io 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+cs_uart =>
+    !a3 & !a4 & !a5 & !a6 & !a7 & !io
+
+cs_vdp =>
+    a1 & !a2 & a3 & !a4 & !a5 & !a6 & !a7 & !io
+
+cs_via1 =>
+    a4 & !a5 & !a6 & !a7 & !io
+
+cs_via2 =>
+    !a4 & a5 & !a6 & !a7 & !io
+
+%END

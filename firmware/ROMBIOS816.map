@@ -1,0 +1,8 @@
+Section supermon:
+	00008000 _BEG_SUPERMON
+	000092eb _END_SUPERMON
+
+Section bios:
+	0000e000 _BEG_BIOS
+	00010000 _END_BIOS
+

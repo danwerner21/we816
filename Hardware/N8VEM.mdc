@@ -1,0 +1,27 @@
+PCBNEW-LibDoc----V1  Sat 02 Jul 2011 12:31:26 PDT
+#
+$MODULE REF*
+Li REF*
+Cd Double rangee de contacts 2 x 12 pins
+Kw CONN
+$EndMODULE
+#
+$MODULE PIN_ARRAY_17X2
+Li PIN_ARRAY_17X2
+Cd Double rangee de contacts 2 x 12 pins
+Kw CONN
+$EndMODULE
+#
+$MODULE LED-5MM-POL
+Li LED-5MM-POL
+Cd LED 5mm - Lead pitch 100mil (2,54mm)
+Kw LED led 5mm 5MM 100mil 2,54mm
+$EndMODULE
+#
+$MODULE PGA121_52
+Li PGA121_52
+Cd Support PGA 121 pins
+Kw PGA
+$EndMODULE
+#
+$EndLIBDOC

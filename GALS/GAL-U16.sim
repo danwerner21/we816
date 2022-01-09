@@ -1,0 +1,73 @@
+%SIGNAL
+PIN  21 =  a8 
+PIN  22 =  a9 
+PIN   2 =  a10 
+PIN   3 =  a11 
+PIN   4 =  a12 
+PIN   5 =  a13 
+PIN   6 =  a14 
+PIN   7 =  a15 
+PIN   8 =  a16 
+PIN   9 =  a17 
+PIN  10 =  a18 
+PIN  11 =  a19 
+PIN  14 =  a20 
+PIN   1 =  a21 
+PIN  13 =  a22 
+PIN  23 =  a23 
+PIN  16 = !cs_ram 
+PIN  15 = !cs_rom 
+PIN  18 = !fbus 
+PIN  17 = !io 
+PIN  19 = !o_rom 
+PIN  20 =  small 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+cs_ram =>
+    !a15 & !a16 & !a17 & !a18 & !a19 & !a20 & !a21 & !a22 & !a23
+  # !a14 & !a16 & !a17 & !a18 & !a19 & !a20 & !a21 & !a22 & !a23 & small
+  # !a13 & !a16 & !a17 & !a18 & !a19 & !a20 & !a21 & !a22 & !a23 & small
+  # a18 & !a19 & !a20 & !a21 & !a22 & !a23
+  # a16 & !a19 & !a20 & !a21 & !a22 & !a23
+  # a17 & !a19 & !a20 & !a21 & !a22 & !a23
+
+cs_rom =>
+    a15 & !a16 & !a17 & !a18 & !a19 & !a20 & !a21 & !a22 & !a23 & io & !small
+  # a13 & a14 & a15 & !a16 & !a17 & !a18 & !a19 & !a20 & !a21 & !a22 & !a23 & io & small
+
+fbus =>
+    a23
+  # a22
+  # a21
+  # a20
+  # a19
+
+hi_ram =>
+    a18 & !a19 & !a20 & !a21 & !a22 & !a23
+  # a16 & !a19 & !a20 & !a21 & !a22 & !a23
+  # a17 & !a19 & !a20 & !a21 & !a22 & !a23
+
+io =>
+    !a8 & a9 & a10 & a11 & a12 & a13 & a14 & a15 & !a16 & !a17 & !a18 & !a19 & !a20 & !a21 & !a22 & !a23
+
+io_area =>
+    !a8 & a9 & a10 & a11 & a12 & a13 & a14 & a15
+
+o_rom =>
+    a20 & a21 & a22 & a23
+
+rom_area =>
+    a13 & a14 & a15 & small
+  # a15 & !small
+
+z0 =>
+    !a16 & !a17 & !a18 & !a19
+
+z1 =>
+    !a20 & !a21 & !a22 & !a23
+
+%END

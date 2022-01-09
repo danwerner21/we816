@@ -1,0 +1,67 @@
+Name     GAL-U15 ;
+PartNo   00 ;
+Date     3/21/2021 ;
+Revision 02 ;
+Designer Dan Werner ;
+Company  a ;
+Assembly None ;
+Location  ;
+Device   g16v8a ;
+
+PIN [2..9] = [a0..7] ; /*  lower 8 address*/ 
+PIN   1   = !io         ; /*                */ 
+PIN   19  = !cs_uart    ; /*                                 */ 
+PIN   17  = !cs_vdp     ; /*                                 */ 
+PIN   15  = !cs_via1    ; /*                                 */ 
+PIN   14  = !cs_via2    ; /*                                 */ 
+
+
+
+/**** 
+PIN   18  = !cs_rtc     ;                                  
+PIN   16  = !cs_snd     ;                                  
+PIN   13  = !board_io   ; 
+***/
+
+/******
+FIELD address = [a7..0] ; 
+FIELD decodes = [cs_uartb, cs_rtcb,cs_vdpb,cs_sndb,cs_via1b,cs_via2b] ; 
+
+cs_uart = cs_uartb & io ;
+cs_rtc = cs_rtcb & io ;
+board_io = cs_uartb # cs_rtcb	;
+cs_rtc = cs_rtcb & io ;
+cs_vdp = cs_vdpb & io ;
+cs_snd = cs_sndb & io ;
+cs_via1 = cs_via1b & io ;
+cs_via2 = cs_via2b & io ;
+
+TABLE address => decodes { 
+[00..07] => 'b'100000;
+08 => 'b'010000;
+[0a..0b] => 'b'001000;
+[0c..0d] => 'b'000100;
+[10..1f] => 'b'000010;
+[20..2f] => 'b'000001;
+}
+
+Memory Map
+UART 00..07
+RTC  08 
+VDP  0a..0b
+SND  0c..0d
+VIA1 10..1f
+VIA2 20..2f
+*****/
+
+cs_uart		=	!a7 & !a6 & !a5 & !a4 & !a3	 &  io	;
+cs_vdp		=	!a7 & !a6 & !a5 & !a4 &  a3 & !a2 &  a1  &  io	;
+cs_via1		=	!a7 & !a6 & !a5 &  a4 &  io	 ;
+cs_via2		=	!a7 & !a6 &  a5 & !a4 &  io	 ;
+
+/*board_io	=	io ;
+cs_rtc		=	b'1'
+cs_snd		=	!a7 & !a6 & !a5 & !a4 &  a3 &  a2 & !a1  &  io	;
+
+*/
+
