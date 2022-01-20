@@ -4,9 +4,8 @@ The WE816 is a 16-bit 65816 based system with 512K of System RAM, 96K of System 
 
 EhBASIC by Lee Davison was ported to the 65816 CPU on the WE816 computer.   It is designed to allow a full 64K bank for BASIC code and variables with the BASIC interpreter running in a totally different bank. Full documentation on the basic intrepreter can be found in the support folder
 
-# DO NOT USE THE STL FILES IN THIS REPO  . . THEY ARE UNTESTED!
-
-![System](Support/images/bare_system.jpg)
+![System](Support/images/case13.jpg)
+![System](Support/images/boardset2.jpg)
 
 
 ---
@@ -23,8 +22,6 @@ EhBASIC by Lee Davison was ported to the 65816 CPU on the WE816 computer.   It i
 * Fix Video RAM paging
 
 * Document BIOS Calls
-
-* DESIGN CASE (in progress)
 
 
 ---
@@ -185,7 +182,15 @@ The Keyboard used in the WE816 is identical to the keyboard used in Sergey Kisel
 
 
 ### Case
+The case in the following images is a 3D print manufactured by the 3D print service offered by JLCPCB.com.  The case was originally designed to be 3D printed by a FDM printer such as the Anycubic Chiron.   It was originally intended that threaded inserts be melted into the stand off posts so the diameter of the holes were sized accordingly.  If a printing service (such as JLCPCB) is used that uses resin printing, it is necessary to slightly drill out the holes in the stand offs so that threaded inserts can be glued in.   It should also be noted that the design tolerances are quite tight and variations in printing can mean that some slight adjusting may be needed in order to get a good fit.
 
+A 12V to 5V converter can be seen in the image that was added into the case in order to convert the 12V power input to the 5B required by the main board.
+
+![System](Support/images/case1.jpg)
+![System](Support/images/case3.jpg)
+![System](Support/images/case5.jpg)
+![System](Support/images/case7.jpg)
+![System](Support/images/case9.jpg)
 
 ### Questions?
 
