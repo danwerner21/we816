@@ -1,4 +1,4 @@
-  Sat Jan 22 2022 11:43                                                                                                Page 1
+  Sat Jan 22 2022 11:54                                                                                                Page 1
 
 
                                              ***************************************
@@ -58,7 +58,7 @@
     44             0000FE17   via1t1lh		.equ	$FE17		; Register
     45             0000FE18   via1t2cl		.equ	$FE18		; Register
     46             0000FE19   via1t2ch		.equ	$FE19		; Register
-  Sat Jan 22 2022 11:43                                                                                                Page 2
+  Sat Jan 22 2022 11:54                                                                                                Page 2
 
 
     47             0000FE1A   via1sr  		.equ	$FE1A		; Register
@@ -118,7 +118,7 @@
    101             0000031B   IECBUFFH		.equ 	$031B		; High byte IEC buffer Pointer
    102             0000031C   IECDEVN			.equ 	$031C		; IEC Device Number
    103             0000031D   IECSTRTL		.equ 	$031D		; low byte IEC Start Address Pointer
-  Sat Jan 22 2022 11:43                                                                                                Page 3
+  Sat Jan 22 2022 11:54                                                                                                Page 3
 
 
    104             0000031E   IECSTRTH		.equ 	$031E		; High byte IEC Start Address Pointer
@@ -163,7 +163,7 @@
    141             00000001   TRUE		.EQU    1
    142             00000000   FALSE		.EQU 	0
    143                        
-   144             00000020   KBD_DELAY 	.EQU 	32			; keyboard delay in MS.   Set higher if keys bou
+   144             00000040   KBD_DELAY 	.EQU 	64			; keyboard delay in MS.   Set higher if keys bou
                     nce, set lower if keyboard feels slow
    145                        
    146                        	INCLUDE 'MACROS.ASM'
@@ -178,7 +178,7 @@
      7                                PHX
      8                                phy
      9                                pha
-  Sat Jan 22 2022 11:43                                                                                                Page 4
+  Sat Jan 22 2022 11:54                                                                                                Page 4
 
 
     10                                php
@@ -238,7 +238,7 @@
    152                        ;
    153                        ; PERFORM SYSTEM COLD INIT
    154                        ;
-  Sat Jan 22 2022 11:43                                                                                                Page 5
+  Sat Jan 22 2022 11:54                                                                                                Page 5
 
 
    155                        ;_______________________________________________________________
@@ -298,7 +298,7 @@
    198                        
    199                        ;__INTRETURN____________________________________________________
    200                        ;
-  Sat Jan 22 2022 11:43                                                                                                Page 6
+  Sat Jan 22 2022 11:54                                                                                                Page 6
 
 
    201                        ; Handle Interrupts
@@ -358,7 +358,7 @@
    252                        OUTCH:
    253 00:E075: DA           		phx
    254 00:E076: 5A           		phy
-  Sat Jan 22 2022 11:43                                                                                                Page 7
+  Sat Jan 22 2022 11:54                                                                                                Page 7
 
 
    255 00:E077: 08           		PHP
@@ -418,7 +418,7 @@
    303 00:E0AA: FA           	plx
    304 00:E0AB: 60           	rts
    305                        
-  Sat Jan 22 2022 11:43                                                                                                Page 8
+  Sat Jan 22 2022 11:54                                                                                                Page 8
 
 
    306                        
@@ -478,7 +478,7 @@
      5                        ;	WRITTEN BY: DAN WERNER -- 2/25/2018
      6                        ;
      7                        ;_________________________________________________________________________________________________
-  Sat Jan 22 2022 11:43                                                                                                Page 9
+  Sat Jan 22 2022 11:54                                                                                                Page 9
 
 
                     _
@@ -538,7 +538,7 @@
     61                        ;
     62                        ; OUTPUT CHAR IN LOW BYTE OF ACC TO UART
     63                        ; 
-  Sat Jan 22 2022 11:43                                                                                                Page 10
+  Sat Jan 22 2022 11:54                                                                                                Page 10
 
 
     64                        ;______________________________________________________________
@@ -598,7 +598,7 @@
    118 00:E130: F0 06        		BEQ	SERIAL_INCH1	; NO CHAR FOUND
    119 00:E132: AD 00 FE     		LDA	UART0			; THEN READ THE CHAR FROM THE UART
    120 00:E135: 28           		PLP 				; RESTORE CPU CONTEXT
-  Sat Jan 22 2022 11:43                                                                                                Page 11
+  Sat Jan 22 2022 11:54                                                                                                Page 11
 
 
    121 00:E136: 18           		CLC
@@ -658,7 +658,7 @@
     48 00:E140: E2 20                SEP #$20 		; 8 bit accum
     49                        	LONGA OFF
     50                        
-  Sat Jan 22 2022 11:43                                                                                                Page 12
+  Sat Jan 22 2022 11:54                                                                                                Page 12
 
 
     51                        ;	Setup Width Parm
@@ -718,7 +718,7 @@
    105                        ; Set COLOR table to $2000
    106 00:E182: A9 80        	LDA	#$80
    107 00:E184: 8D 0B FE     	STA	CMDP
-  Sat Jan 22 2022 11:43                                                                                                Page 13
+  Sat Jan 22 2022 11:54                                                                                                Page 13
 
 
    108 00:E187: A9 83            	LDA 	#$83
@@ -778,7 +778,7 @@
    162                        	LONGI OFF
    163 00:E1BE: AC 31 03     	ldy CSRY
    164 00:E1C1: AE 30 03     	ldx CSRX
-  Sat Jan 22 2022 11:43                                                                                                Page 14
+  Sat Jan 22 2022 11:54                                                                                                Page 14
 
 
    165 00:E1C4: 20 8E E2     	jsr SetXY
@@ -838,7 +838,7 @@
    219 00:E210: 5A           	phy
    220 00:E211: 08                   php
    221 00:E212: E2 30                SEP #$30 		; 8 bit accum
-  Sat Jan 22 2022 11:43                                                                                                Page 15
+  Sat Jan 22 2022 11:54                                                                                                Page 15
 
 
    222                        	LONGA OFF
@@ -898,7 +898,7 @@
    276 00:E26B: F0 06        	beq Outch9918_BS1
    277 00:E26D: CA           	dex
    278 00:E26E: 20 8E E2     	jsr SetXY
-  Sat Jan 22 2022 11:43                                                                                                Page 16
+  Sat Jan 22 2022 11:54                                                                                                Page 16
 
 
    279 00:E271: 80 DE        	bra Outch9918_Exit
@@ -958,7 +958,7 @@
    333 00:E2A2: 0A           	ASL
    334 00:E2A3: 0A           	ASL
    335 00:E2A4: 0A           	ASL
-  Sat Jan 22 2022 11:43                                                                                                Page 17
+  Sat Jan 22 2022 11:54                                                                                                Page 17
 
 
    336 00:E2A5: 0A           	ASL 				; A=A*32
@@ -1018,7 +1018,7 @@
    390                        ScrollUp:
    391 00:E2FE: 48           	pha
    392 00:E2FF: DA           	phx
-  Sat Jan 22 2022 11:43                                                                                                Page 18
+  Sat Jan 22 2022 11:54                                                                                                Page 18
 
 
    393 00:E300: 5A           	phy
@@ -1078,7 +1078,7 @@
    447 00:E34C: AC 31 03     	ldy CSRY
    448 00:E34F: 20 8E E2     	jsr SetXY
    449                        
-  Sat Jan 22 2022 11:43                                                                                                Page 19
+  Sat Jan 22 2022 11:54                                                                                                Page 19
 
 
    450 00:E352: 28           	plp
@@ -1138,7 +1138,7 @@
    504 00:E398: 38           	sec
    505 00:E399: ED 36 03     	sbc TEMP
    506 00:E39C: 8D 36 03     	sta TEMP
-  Sat Jan 22 2022 11:43                                                                                                Page 20
+  Sat Jan 22 2022 11:54                                                                                                Page 20
 
 
    507 00:E39F: 80 09        	bra CopyVideoMemCont
@@ -1198,7 +1198,7 @@
    561 00:E3ED: 4C E4 E3     	JMP	ClearScreen1
    562                        
    563                        ENDCLRScreen:
-  Sat Jan 22 2022 11:43                                                                                                Page 21
+  Sat Jan 22 2022 11:54                                                                                                Page 21
 
 
    564 00:E3F0: A2 D0 03     	LDX  	#LINEFLGS
@@ -1258,7 +1258,7 @@
    618 00:E430: 68               	pla
    619 00:E431: FA               	plx
    620 00:E432: 7A               	ply
-  Sat Jan 22 2022 11:43                                                                                                Page 22
+  Sat Jan 22 2022 11:54                                                                                                Page 22
 
 
    621 00:E433: 60               	rts
@@ -1318,7 +1318,7 @@
        00:E4C1: 48 48 30 00 
     18 00:E4C5: 00 00 38 40   .DB $00,$00,$38,$40,$78,$40,$38,$00 ; $EE
        00:E4C9: 78 40 38 00 
-  Sat Jan 22 2022 11:43                                                                                                Page 23
+  Sat Jan 22 2022 11:54                                                                                                Page 23
 
 
     19 00:E4CD: 00 10 38 54   .DB $00,$10,$38,$54,$54,$38,$10,$00 ; $ED
@@ -1378,7 +1378,7 @@
     46 00:E5A5: 50 50 50 50   .DB $50,$50,$50,$50,$FC,$00,$00,$00 ; $D2
        00:E5A9: FC 00 00 00 
     47 00:E5AD: 10 10 10 10   .DB $10,$10,$10,$10,$FC,$00,$FC,$00 ; $D1
-  Sat Jan 22 2022 11:43                                                                                                Page 24
+  Sat Jan 22 2022 11:54                                                                                                Page 24
 
 
        00:E5B1: FC 00 FC 00 
@@ -1438,7 +1438,7 @@
        00:E689: D0 50 50 50 
     75 00:E68D: 10 10 10 10   .DB $10,$10,$10,$10,$F0,$10,$F0,$10 ; $B5
        00:E691: F0 10 F0 10 
-  Sat Jan 22 2022 11:43                                                                                                Page 25
+  Sat Jan 22 2022 11:54                                                                                                Page 25
 
 
     76 00:E695: 10 10 10 10   .DB $10,$10,$10,$10,$F0,$10,$10,$10 ; $B4
@@ -1498,7 +1498,7 @@
    103 00:E76D: 00 00 00 00   .DB $00,$00,$00,$00,$04,$0C,$1C,$3C ; $99
        00:E771: 04 0C 1C 3C 
    104 00:E775: 00 00 00 00   .DB $00,$00,$00,$00,$80,$C0,$E0,$F0 ; $98
-  Sat Jan 22 2022 11:43                                                                                                Page 26
+  Sat Jan 22 2022 11:54                                                                                                Page 26
 
 
        00:E779: 80 C0 E0 F0 
@@ -1558,7 +1558,7 @@
        00:E851: 0C 08 08 30 
    132 00:E855: 00 10 10 10   .DB $00,$10,$10,$10,$00,$10,$10,$10 ; $7C
        00:E859: 00 10 10 10 
-  Sat Jan 22 2022 11:43                                                                                                Page 27
+  Sat Jan 22 2022 11:54                                                                                                Page 27
 
 
    133 00:E85D: 00 18 20 20   .DB $00,$18,$20,$20,$60,$20,$20,$18 ; $7B
@@ -1618,7 +1618,7 @@
    160 00:E935: 00 00 00 00   .DB $00,$00,$00,$00,$00,$10,$30,$30 ; $60
        00:E939: 00 10 30 30 
    161 00:E93D: FC 00 00 00   .DB $FC,$00,$00,$00,$00,$00,$00,$00 ; $5F
-  Sat Jan 22 2022 11:43                                                                                                Page 28
+  Sat Jan 22 2022 11:54                                                                                                Page 28
 
 
        00:E941: 00 00 00 00 
@@ -1678,7 +1678,7 @@
        00:EA19: 44 44 44 78 
    189 00:EA1D: 00 38 44 40   .DB $00,$38,$44,$40,$40,$40,$44,$38 ; $43
        00:EA21: 40 40 44 38 
-  Sat Jan 22 2022 11:43                                                                                                Page 29
+  Sat Jan 22 2022 11:54                                                                                                Page 29
 
 
    190 00:EA25: 00 78 44 44   .DB $00,$78,$44,$44,$78,$44,$44,$78 ; $42
@@ -1738,7 +1738,7 @@
    217 00:EAFD: 00 00 00 00   .DB $00,$00,$00,$00,$00,$20,$30,$30 ; $27
        00:EB01: 00 20 30 30 
    218 00:EB05: 00 34 48 54   .DB $00,$34,$48,$54,$20,$50,$50,$20 ; $26
-  Sat Jan 22 2022 11:43                                                                                                Page 30
+  Sat Jan 22 2022 11:54                                                                                                Page 30
 
 
        00:EB09: 20 50 50 20 
@@ -1798,7 +1798,7 @@
        00:EBE1: 34 0C 1C 00 
    246 00:EBE5: FC FC 84 B4   .DB $FC,$FC,$84,$B4,$B4,$84,$FC,$FC ; $0A
        00:EBE9: B4 84 FC FC 
-  Sat Jan 22 2022 11:43                                                                                                Page 31
+  Sat Jan 22 2022 11:54                                                                                                Page 31
 
 
    247 00:EBED: 00 00 78 48   .DB $00,$00,$78,$48,$48,$78,$00,$00 ; $09
@@ -1858,7 +1858,7 @@
    672                            LONGA Off              	;
    673                            LONGI Off              	;
    674 00:EC51: DA               phx
-  Sat Jan 22 2022 11:43                                                                                                Page 32
+  Sat Jan 22 2022 11:54                                                                                                Page 32
 
 
    675 00:EC52: 5A               phy
@@ -1918,7 +1918,7 @@
    727 00:EC9E: 8D 20 FE         sta	via2regb	; write value
    728                        innerScanLoop:
    729 00:ECA1: AD 21 FE         lda	via2rega	; read value
-  Sat Jan 22 2022 11:43                                                                                                Page 33
+  Sat Jan 22 2022 11:54                                                                                                Page 33
 
 
    730 00:ECA4: A2 00            ldx #$00
@@ -1978,7 +1978,7 @@
    784                        
    785                        ;_________________________________________________________________________________________________
                     __
-  Sat Jan 22 2022 11:43                                                                                                Page 34
+  Sat Jan 22 2022 11:54                                                                                                Page 34
 
 
    786                        ; Check for Modifier keys (Shift, Control, Graph/Alt)
@@ -2038,7 +2038,7 @@
    839                        ;_________________________________________________________________________________________________
                     __
    840                        ; Decode Keyboard
-  Sat Jan 22 2022 11:43                                                                                                Page 35
+  Sat Jan 22 2022 11:54                                                                                                Page 35
 
 
    841                        ;
@@ -2098,7 +2098,7 @@
    894 00:ED86: FA               plx
    895 00:ED87: 28               plp
    896 00:ED88: 60               rts
-  Sat Jan 22 2022 11:43                                                                                                Page 36
+  Sat Jan 22 2022 11:54                                                                                                Page 36
 
 
    897                        is_GraphLock:
@@ -2158,7 +2158,7 @@
    934 00:EE31: 20 1C 1D 1E      .DB     32,28,29,30,31,01,02,04         ; 136
        00:EE35: 1F 01 02 04 
    935                        
-  Sat Jan 22 2022 11:43                                                                                                Page 37
+  Sat Jan 22 2022 11:54                                                                                                Page 37
 
 
    936 00:EE39: 30 31 32 33      .DB     '0','1','2','3','4','5','6','7' ; 144 ; Control
@@ -2200,7 +2200,7 @@
    960                            	LONGI Off              	;
    961 00:EE9C: 48           	pha
    962 00:EE9D: DA           	phx
-   963 00:EE9E: A2 20        	ldx 	#KBD_DELAY
+   963 00:EE9E: A2 40        	ldx 	#KBD_DELAY
    964 00:EEA0: A9 40        	LDA	#$40			; set for 1024 cycles (MHZ)
    965 00:EEA2: 8D 29 FE     	STA	via2t2ch		; set VIA 2 T2C_h
    966                        kbdDelay_a:
@@ -2218,7 +2218,7 @@
      1                        ;__IEC____________________________________________________________________________________________
                     _
      2                        ;
-  Sat Jan 22 2022 11:43                                                                                                Page 38
+  Sat Jan 22 2022 11:54                                                                                                Page 38
 
 
      3                        ;	IEC SERIAL DRIVER
@@ -2278,7 +2278,7 @@
     56                        
     57                        ;***********************************************************************************;
     58                        ;
-  Sat Jan 22 2022 11:43                                                                                                Page 39
+  Sat Jan 22 2022 11:54                                                                                                Page 39
 
 
     59                        ; command devices on the serial bus to LISTEN
@@ -2338,7 +2338,7 @@
    113 00:EF03: 20 B3 EE     	JSR	LAB_E4A0		; set serial data out high
    114 00:EF06: 20 77 F0     	JSR	LAB_EF96		; 1ms delay
    115                        
-  Sat Jan 22 2022 11:43                                                                                                Page 40
+  Sat Jan 22 2022 11:54                                                                                                Page 40
 
 
    116                        ;***********************************************************************************;
@@ -2398,7 +2398,7 @@
    170                        
    171 00:EF3D: 4A           	LSR				; serial clock to carry
    172 00:EF3E: 4A           	LSR				; serial data to carry
-  Sat Jan 22 2022 11:43                                                                                                Page 41
+  Sat Jan 22 2022 11:54                                                                                                Page 41
 
 
    173 00:EF3F: 90 43        	BCC	LAB_EEB7		; if data low do timeout on serial bus
@@ -2458,7 +2458,7 @@
    227                        ; timeout on serial bus
    228                        
    229                        LAB_EEB7
-  Sat Jan 22 2022 11:43                                                                                                Page 42
+  Sat Jan 22 2022 11:54                                                                                                Page 42
 
 
    230 00:EF84: A9 03        	LDA	#$03			; error $03, write timeout
@@ -2518,7 +2518,7 @@
    284                        ;
    285                        ; wait for bus end after send
    286                        
-  Sat Jan 22 2022 11:43                                                                                                Page 43
+  Sat Jan 22 2022 11:54                                                                                                Page 43
 
 
    287                        LAB_EED3
@@ -2578,7 +2578,7 @@
    341 00:EFCF: 20 6E F0     	JSR	LAB_EF8D		; set serial clock low
    342 00:EFD2: AD 1F FE     	LDA	via1ora		; get VIA 1 DRA, no handshake
    343 00:EFD5: 09 80        	ORA	#$80			; set serial ATN low
-  Sat Jan 22 2022 11:43                                                                                                Page 44
+  Sat Jan 22 2022 11:54                                                                                                Page 44
 
 
    344 00:EFD7: 8D 1F FE     	STA	via1ora		; set VIA 1 DRA, no handshake
@@ -2638,7 +2638,7 @@
    398                        LAB_EF19
    399 00:EFF2: 78           	SEI				; disable interrupts
    400 00:EFF3: A9 00        	LDA	#$00			; clear A
-  Sat Jan 22 2022 11:43                                                                                                Page 45
+  Sat Jan 22 2022 11:54                                                                                                Page 45
 
 
    401 00:EFF5: 8D 15 03     	STA	IECBTC		; clear serial bus bit count
@@ -2698,7 +2698,7 @@
    455 00:F044: AD 1F FE     	LDA	via1ora		; get VIA 1 DRA, no handshake
    456 00:F047: CD 1F FE     	CMP	via1ora		; compare with self
    457 00:F04A: D0 F8        	BNE	LAB_EF66		; loop if changing
-  Sat Jan 22 2022 11:43                                                                                                Page 46
+  Sat Jan 22 2022 11:54                                                                                                Page 46
 
 
    458                        
@@ -2758,7 +2758,7 @@
    512                        
    513                        ; OR into serial status byte
    514                        
-  Sat Jan 22 2022 11:43                                                                                                Page 47
+  Sat Jan 22 2022 11:54                                                                                                Page 47
 
 
    515                        LAB_FE6A
@@ -2818,7 +2818,7 @@
    568 00:F0CA: 8D 17 03     	STA	IECSTW		; set serial status byte
    569 00:F0CD: 20 92 F3     	JSR	LAB_FFE1		; scan stop key, return Zb = 1 = [STOP]
    570 00:F0D0: D0 03        	BNE	LAB_F598		; branch if not [STOP]
-  Sat Jan 22 2022 11:43                                                                                                Page 48
+  Sat Jan 22 2022 11:54                                                                                                Page 48
 
 
    571 00:F0D2: 4C 65 F1     	JMP	LAB_F6CB		; else close the serial bus device and flag stop
@@ -2878,7 +2878,7 @@
    621                        ; LOADBANK must also be specified with the appropriate bank number.
    622                        
    623                        ; Before this routine can be called,
-  Sat Jan 22 2022 11:43                                                                                                Page 49
+  Sat Jan 22 2022 11:54                                                                                                Page 49
 
 
    624                        ;		the SETLFS
@@ -2938,7 +2938,7 @@
 +  675 00:F15B: E2 10        		SEP #$10 		; 8 bit Index registers 
 +  675                        		LONGI OFF
    676                        
-  Sat Jan 22 2022 11:43                                                                                                Page 50
+  Sat Jan 22 2022 11:54                                                                                                Page 50
 
 
    677 00:F15D: 20 BA EF     	JSR	LAB_EEE4		; output a byte to the serial bus
@@ -2998,7 +2998,7 @@
    731                        LAB_F787
    732 00:F197: A9 04        	LDA	#$04			; file not found
    733 00:F199: 2C           	.byte	$2C			; makes next line BIT LAB_05A9
-  Sat Jan 22 2022 11:43                                                                                                Page 51
+  Sat Jan 22 2022 11:54                                                                                                Page 51
 
 
    734                        LAB_F78A
@@ -3058,7 +3058,7 @@
    788 00:F1D0: AD 1C 03     	LDA	IECDEVN		; get device number
    789 00:F1D3: 20 D2 EE     	JSR	LAB_EE17		; command devices on the serial bus to LISTEN
    790                        
-  Sat Jan 22 2022 11:43                                                                                                Page 52
+  Sat Jan 22 2022 11:54                                                                                                Page 52
 
 
    791 00:F1D6: AD 19 03     	LDA	IECSECAD		; get the secondary address
@@ -3118,7 +3118,7 @@
    835 00:F213: AD 1B 03     	LDA	IECBUFFH		; get load address high byte
    836 00:F216: 8D 23 03     	STA	LOADBUFH		; save program start address high byte
    837 00:F219: AD 1A 03     	LDA	IECBUFFL		; get load address low byte
-  Sat Jan 22 2022 11:43                                                                                                Page 53
+  Sat Jan 22 2022 11:54                                                                                                Page 53
 
 
    838 00:F21C: 8D 22 03     	STA	LOADBUFL		; save program start address low byte
@@ -3178,7 +3178,7 @@
    892                        
    893 00:F250: EE 1B 03     	INC	IECBUFFH		; increment buffer address high byte
    894                        LAB_FD21
-  Sat Jan 22 2022 11:43                                                                                                Page 54
+  Sat Jan 22 2022 11:54                                                                                                Page 54
 
 
    895 00:F253: 60           	RTS
@@ -3238,7 +3238,7 @@
    936                        LAB_F1D7
    937 00:F29B: 0A 0D 46 4F  	.byte	$0A,$0D,"FOUND ",0
        00:F29F: 55 4E 44 20 
-  Sat Jan 22 2022 11:43                                                                                                Page 55
+  Sat Jan 22 2022 11:54                                                                                                Page 55
 
 
        00:F2A3: 00 
@@ -3298,7 +3298,7 @@
    990                        	Index16
 +  990 00:F2D7: C2 10        		REP #$10 		; 16 bit Index registers 
 +  990                        		LONGI ON
-  Sat Jan 22 2022 11:43                                                                                                Page 56
+  Sat Jan 22 2022 11:54                                                                                                Page 56
 
 
    991 00:F2D9: AE 20 03     	ldx IECFNPL
@@ -3358,7 +3358,7 @@
   1037                        					; according to the 6522 data sheet
   1038                        LAB_F166
   1039 00:F313: AD 1E FE     	LDA	via1ier		; get VIA 1 IER
-  Sat Jan 22 2022 11:43                                                                                                Page 57
+  Sat Jan 22 2022 11:54                                                                                                Page 57
 
 
   1040 00:F316: 29 60        	AND	#$60			; mask 0xx0 0000, T1 and T2 interrupts
@@ -3418,7 +3418,7 @@
   1094                        
   1095 00:F356: A2 40        	LDX	#$40			; assert CS on DS1302
   1096 00:F358: 8E 1F FE     	STX	via1ora			; set VIA 1 DRA, no handshake
-  Sat Jan 22 2022 11:43                                                                                                Page 58
+  Sat Jan 22 2022 11:54                                                                                                Page 58
 
 
   1097                        
@@ -3478,7 +3478,7 @@
   1151 00:F392: 20 74 FF     	jsr	INPVEC
   1152 00:F395: C9 03        	cmp #$03
   1153 00:F397: 60           	rts
-  Sat Jan 22 2022 11:43                                                                                                Page 59
+  Sat Jan 22 2022 11:54                                                                                                Page 59
 
 
   1154                        
@@ -3538,7 +3538,7 @@
   1208                        ;
   1209                        ; open a logical file
   1210                        
-  Sat Jan 22 2022 11:43                                                                                                Page 60
+  Sat Jan 22 2022 11:54                                                                                                Page 60
 
 
   1211                        ; this routine is used to open a logical file. Once the logical file is set up it
@@ -3598,7 +3598,7 @@
   1265                        ; when used with a device on the serial bus this routine will automatically send the
   1266                        ; listen address specified by the OPEN routine, LAB_FFC0, and any secondary address.
   1267                        
-  Sat Jan 22 2022 11:43                                                                                                Page 61
+  Sat Jan 22 2022 11:54                                                                                                Page 61
 
 
   1268                        ; possible errors are:
@@ -3658,7 +3658,7 @@
   1322                        ; possible errors are:
   1323                        ;
   1324                        ;	3 : file not open
-  Sat Jan 22 2022 11:43                                                                                                Page 62
+  Sat Jan 22 2022 11:54                                                                                                Page 62
 
 
   1325                        ;	5 : device not present
@@ -3718,7 +3718,7 @@
   1379                        
   1380                        ;***********************************************************************************;
   1381                        ;
-  Sat Jan 22 2022 11:43                                                                                                Page 63
+  Sat Jan 22 2022 11:54                                                                                                Page 63
 
 
   1382                        ; set file details from table,X
@@ -3778,7 +3778,7 @@
     15             00000020   mask_rd:    .EQU    $20     ; Enable data read from RTC
     16             00000010   mask_rst:   .EQU    $10     ; De-activate RTC reset line
     17                        
-  Sat Jan 22 2022 11:43                                                                                                Page 64
+  Sat Jan 22 2022 11:54                                                                                                Page 64
 
 
     18                        
@@ -3838,7 +3838,7 @@
     72 00:F4BE: 09 81            ORA #%10000001      ; set MSB to one for DS1302 COMMAND BYTE (READ)
     73 00:F4C0: 20 CD F4         JSR RTC_WR          ; write address to DS1302
     74 00:F4C3: 20 04 F5         JSR RTC_RD          ; read value from DS1302 (value is in reg C)
-  Sat Jan 22 2022 11:43                                                                                                Page 65
+  Sat Jan 22 2022 11:54                                                                                                Page 65
 
 
     75 00:F4C6: 20 37 F5         JSR RTC_RESET_ON    ; turn on RTC reset
@@ -3898,7 +3898,7 @@
    129                        ; function RTC_RD
    130                        ; output value in A
    131                        RTC_RD:
-  Sat Jan 22 2022 11:43                                                                                                Page 66
+  Sat Jan 22 2022 11:54                                                                                                Page 66
 
 
    132 00:F504: DA               PHX
@@ -3958,7 +3958,7 @@
    186 00:F54B: 68               PLA
    187 00:F54C: 60               RTS
    188                        
-  Sat Jan 22 2022 11:43                                                                                                Page 67
+  Sat Jan 22 2022 11:54                                                                                                Page 67
 
 
    189                        RTC_GET_DTA:
@@ -4018,7 +4018,7 @@
    243 00:F5A0: 48               PHA
    244 00:F5A1: 68               PLA
    245 00:F5A2: 48               PHA
-  Sat Jan 22 2022 11:43                                                                                                Page 68
+  Sat Jan 22 2022 11:54                                                                                                Page 68
 
 
    246 00:F5A3: 68               PLA
@@ -4078,7 +4078,7 @@
    397 00:FD38: 20 DD EF     LUNLSTN		JSR LAB_EF04 ;. Send UNLISTEN command to serial bus.
    398 00:FD3B: 6B           			RTL
    399 00:FD3C: 20 D2 EE     LLISTEN		JSR LAB_EE17 ;. Send LISTEN command to serial bus.
-  Sat Jan 22 2022 11:43                                                                                                Page 69
+  Sat Jan 22 2022 11:54                                                                                                Page 69
 
 
    400 00:FD3F: 6B           			RTL
@@ -4138,7 +4138,7 @@
    451 00:FFB0: 4C 21 F3     IECINIT		JMP INITIEC	   		; INIT IEC
    452 00:FFB3: 4C 84 F4     IECCLCH     JMP LAB_F3F3        ; close input and output channels
    453 00:FFB6: 4C 32 F4     IECOUTC     JMP LAB_F309        ; open a channel for output
-  Sat Jan 22 2022 11:43                                                                                                Page 70
+  Sat Jan 22 2022 11:54                                                                                                Page 70
 
 
    454 00:FFB9: 4C 04 F4     IECINPC     JMP LAB_F2C7        ; open a channel for input
