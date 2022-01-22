@@ -683,9 +683,16 @@ GetKey_Loop:
     jsr ModifierKeyCheck
     sta ScannedKey
 GetKey_loop1:
+    jsr kbdDelay
     jsr ScanKeyboard
     cmp TEMP+1
     beq GetKey_loop1
+GetKey_Loop2:
+    jsr kbdDelay
+    jsr ScanKeyboard
+    cmp #$FF
+    bne GetKey_Loop2
+
     LDA ScannedKey
     jsr DecodeKeyboard
 
