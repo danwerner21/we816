@@ -1,4 +1,4 @@
-  Sun Nov 21 2021 15:13                                                                                                Page 1
+  Sat Jan 22 2022 11:43                                                                                                Page 1
 
 
                                              ***************************************
@@ -58,7 +58,7 @@
     49                        ;*     R - Dump & display 65C816 registers                                         *
     50                        ;*     T - Copy (transfer) memory region                                           *
     51                        ;*     X - Exit Supermon 816 & return to operating environment                     *
-  Sun Nov 21 2021 15:13                                                                                                Page 2
+  Sat Jan 22 2022 11:43                                                                                                Page 2
 
 
     52                        ;*     > - Modify up to 32 bytes of memory                                         *
@@ -118,7 +118,7 @@
    106                        ;* and PEI instructions:                                                           *
    107                        ;*                                                                                 *
    108                        ;*     PEA <operand>                                                               *
-  Sun Nov 21 2021 15:13                                                                                                Page 3
+  Sat Jan 22 2022 11:43                                                                                                Page 3
 
 
    109                        ;*     PEI (<operand>)                                                             *
@@ -178,7 +178,7 @@
    163                        ;	----------------------------------------------------
    164                        ;	  BCD   binary-coded decimal
    165                        ;	   DP   direct page or page zero
-  Sun Nov 21 2021 15:13                                                                                                Page 4
+  Sat Jan 22 2022 11:43                                                                                                Page 4
 
 
    166                        ;	  EOF   end-of-field
@@ -238,7 +238,7 @@
    220                        ;	--------------------------------------------------------
    221                        	;.org  $008000              ;assembly address...
    222                        SUPERMON 	SECTION 	OFFSET $8000
-  Sun Nov 21 2021 15:13                                                                                                Page 5
+  Sat Jan 22 2022 11:43                                                                                                Page 5
 
 
    223                        ;
@@ -298,7 +298,7 @@
    277                        ;	         phd                   ;save DP
    278                        ;	         rep #%00110000        ;16 bit registers
    279                        ;	         pha
-  Sun Nov 21 2021 15:13                                                                                                Page 6
+  Sat Jan 22 2022 11:43                                                                                                Page 6
 
 
    280                        ;	         phx
@@ -358,7 +358,7 @@
    334                        
    335                        
    336                        _asm24_  .macro _ad
-  Sun Nov 21 2021 15:13                                                                                                Page 7
+  Sat Jan 22 2022 11:43                                                                                                Page 7
 
 
    337                                 .db <_ad,>_ad,_ad>>16
@@ -418,7 +418,7 @@
    391                        ;
    392                        ;tdc      .macro
    393                        ;         .db $7b
-  Sun Nov 21 2021 15:13                                                                                                Page 8
+  Sat Jan 22 2022 11:43                                                                                                Page 8
 
 
    394                        ;         .endm
@@ -478,7 +478,7 @@
    448                                 .db >_op
    449                                 .endm
    450                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 9
+  Sat Jan 22 2022 11:43                                                                                                Page 9
 
 
    451                        ldaw     .macro _op
@@ -538,7 +538,7 @@
    505                        eoril    .macro _ad
    506                                 .db $47,_ad
    507                                 .endm
-  Sun Nov 21 2021 15:13                                                                                                Page 10
+  Sat Jan 22 2022 11:43                                                                                                Page 10
 
 
    508                        ;
@@ -598,7 +598,7 @@
    562                                 .db $c3,_of
    563                                 .endm
    564                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 11
+  Sat Jan 22 2022 11:43                                                                                                Page 11
 
 
    565                        cmpsi    .macro _of
@@ -658,7 +658,7 @@
    619                                 .endm
    620                        ;
    621                        shorta   .macro
-  Sun Nov 21 2021 15:13                                                                                                Page 12
+  Sat Jan 22 2022 11:43                                                                                                Page 12
 
 
    622                                 .db $e2,$20
@@ -718,7 +718,7 @@
    676                        ;
    677                        ;================================================================================
    678                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 13
+  Sat Jan 22 2022 11:43                                                                                                Page 13
 
 
    679                        ;ASCII CONTROL DEFINITIONS (menmonic order)
@@ -778,7 +778,7 @@
    733                        ;
    734                        ;	status register flags...
    735                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 14
+  Sat Jan 22 2022 11:43                                                                                                Page 14
 
 
    736             00000001   sr_car   .equ %00000001            ;C
@@ -838,7 +838,7 @@
    790                        ;
    791             00000006   a_hexdec .equ 'A'-'9'-2            ;hex to decimal difference
    792             00000025   c_bin    .equ '%'                  ;binary prefix
-  Sun Nov 21 2021 15:13                                                                                                Page 15
+  Sat Jan 22 2022 11:43                                                                                                Page 15
 
 
    793             0000002B   c_dec    .equ '+'                  ;decimal prefix
@@ -898,7 +898,7 @@
    847             00000003   am_adry  .equ %0011                ;<addr>,Y
    848             00000004   am_ind   .equ %0100                ;(<addr>)
    849             00000005   am_indl  .equ %0101                ;[<dp>]
-  Sun Nov 21 2021 15:13                                                                                                Page 16
+  Sat Jan 22 2022 11:43                                                                                                Page 16
 
 
    850             00000006   am_indly .equ %0110                ;[<dp>],Y
@@ -958,7 +958,7 @@
    904             00009C0C   mne_eor  .equ $9c0c                ;EOR
    905             000023D4   mne_inc  .equ $23d4                ;INC
    906             0000CBD4   mne_inx  .equ $cbd4                ;INX
-  Sun Nov 21 2021 15:13                                                                                                Page 17
+  Sat Jan 22 2022 11:43                                                                                                Page 17
 
 
    907             0000D3D4   mne_iny  .equ $d3d4                ;INY
@@ -1018,7 +1018,7 @@
    961             0000166A   mne_txa  .equ $166a                ;TXA
    962             0000A66A   mne_txs  .equ $a66a                ;TXS
    963             0000D66A   mne_txy  .equ $d66a                ;TXY
-  Sun Nov 21 2021 15:13                                                                                                Page 18
+  Sat Jan 22 2022 11:43                                                                                                Page 18
 
 
    964             000016AA   mne_tya  .equ $16aa                ;TYA
@@ -1078,7 +1078,7 @@
   1018             0000003C   mne_perx .equ 60                   ;PER
   1019             00000003   mne_phax .equ 3                    ;PHA
   1020             0000000A   mne_phbx .equ 10                   ;PHB
-  Sun Nov 21 2021 15:13                                                                                                Page 19
+  Sat Jan 22 2022 11:43                                                                                                Page 19
 
 
   1021             0000001A   mne_phdx .equ 26                   ;PHD
@@ -1138,7 +1138,7 @@
   1075             00000030   srinit   .equ %00110000            ;SR initialization value
   1076                        ;
   1077                        ;================================================================================
-  Sun Nov 21 2021 15:13                                                                                                Page 20
+  Sat Jan 22 2022 11:43                                                                                                Page 20
 
 
   1078                        ;
@@ -1198,7 +1198,7 @@
   1132             0000004E   range    .equ iopsize+s_byte       ;allowable radix range
   1133             0000004F   vopsflag .equ range+s_byte         ;VOPS & ROPS mode bits
   1134                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 21
+  Sat Jan 22 2022 11:43                                                                                                Page 21
 
 
   1135                        ;
@@ -1258,7 +1258,7 @@
   1184 00:802E: 8D 02 03              sta vecbrki           ;BRK handler
   1185                                 shortr                ;8 bit registers
 + 1185 00:8031: E2 30                 .db $e2,$30
-  Sun Nov 21 2021 15:13                                                                                                Page 22
+  Sat Jan 22 2022 11:43                                                                                                Page 22
 
 
   1186 00:8033: A2 3F                 ldx #vopsflag-reg_pbx
@@ -1318,7 +1318,7 @@
 + 1233 00:8063: C2 20                 .db $c2,$20
   1234 00:8065: 48                   pha
   1235                                ldaw $0000              ;set DPR
-  Sun Nov 21 2021 15:13                                                                                                Page 23
+  Sat Jan 22 2022 11:43                                                                                                Page 23
 
 
 + 1235 00:8066: A9 00                 lda #<$0000
@@ -1378,7 +1378,7 @@
   1281                        ;monreg: DISPLAY MPU REGISTERS
   1282                        ;
   1283                        ;	---------
-  Sun Nov 21 2021 15:13                                                                                                Page 24
+  Sat Jan 22 2022 11:43                                                                                                Page 24
 
 
   1284                        ;	syntax: R
@@ -1438,7 +1438,7 @@
   1333                        ;         .rept s_word
   1334 00:80E2: C8                      iny
   1335 00:80E3: C8                      iny
-  Sun Nov 21 2021 15:13                                                                                                Page 25
+  Sat Jan 22 2022 11:43                                                                                                Page 25
 
 
   1336                        ;         .endr
@@ -1498,7 +1498,7 @@
   1385                                 shorta
 + 1385 00:812A: E2 20                 .db $e2,$20
   1386 00:812C: 4C 46 8B              jmp getparm           ;evaluate parm & execute command
-  Sun Nov 21 2021 15:13                                                                                                Page 26
+  Sat Jan 22 2022 11:43                                                                                                Page 26
 
 
   1387                        ;
@@ -1558,7 +1558,7 @@
   1440                        ;
   1441 00:8157: 9E 46 02     _0030030 stz auxbuf,x          ;clear addressing mode buffer
   1442 00:815A: CA                    dex
-  Sun Nov 21 2021 15:13                                                                                                Page 27
+  Sat Jan 22 2022 11:43                                                                                                Page 27
 
 
   1443 00:815B: D0 FA                 bne _0030030
@@ -1618,7 +1618,7 @@
   1496 00:8199: AD 46 00              lda mnepck            ;packed menmonic
   1497 00:819C: A2 54                 ldx #opc_mvn          ;MVN opcode
   1498                                 cmpw mne_mvn          ;is it MVN?
-  Sun Nov 21 2021 15:13                                                                                                Page 28
+  Sat Jan 22 2022 11:43                                                                                                Page 28
 
 
 + 1498 00:819E: C9 DC                 cmp #<mne_mvn
@@ -1678,7 +1678,7 @@
   1547                        ;
   1548 00:81ED: AD 4C 00              lda flimflag          ;FLIM already set?
   1549 00:81F0: D0 2A                 bne monasc04          ;yes - error
-  Sun Nov 21 2021 15:13                                                                                                Page 29
+  Sat Jan 22 2022 11:43                                                                                                Page 29
 
 
   1550                        ;
@@ -1738,7 +1738,7 @@
   1604                        ;	evaluate mnemonic...
   1605                        ;
   1606 00:8244: A2 5B        _0060030 ldx #n_mnemon-1       ;starting mnemonic index
-  Sun Nov 21 2021 15:13                                                                                                Page 30
+  Sat Jan 22 2022 11:43                                                                                                Page 30
 
 
   1607                        ;
@@ -1798,7 +1798,7 @@
   1657 00:828A: A0 00                 ldy #0
   1658                        ;
   1659 00:828C: B1 22        _0070060 lda (addrb),y         ;table addressing mode
-  Sun Nov 21 2021 15:13                                                                                                Page 31
+  Sat Jan 22 2022 11:43                                                                                                Page 31
 
 
   1660 00:828E: D9 46 02              cmp auxbuf,y          ;entered addressing mode
@@ -1858,7 +1858,7 @@
   1714 00:82DB: 10 07                 bpl _0070140          ;no
   1715                        ;
   1716 00:82DD: A2 02                 ldx #s_word           ;promote operand size to...
-  Sun Nov 21 2021 15:13                                                                                                Page 32
+  Sat Jan 22 2022 11:43                                                                                                Page 32
 
 
   1717 00:82DF: 8E 4B 00              stx eopsize           ;16 bits
@@ -1918,7 +1918,7 @@
   1769 00:8323: 10 FA                 bpl _0090010
   1770                        ;
   1771 00:8325: A9 41                 lda #asmprfx          ;assemble code...
-  Sun Nov 21 2021 15:13                                                                                                Page 33
+  Sat Jan 22 2022 11:43                                                                                                Page 33
 
 
   1772 00:8327: 8D 00 02              sta ibuffer           ;prompt prefix
@@ -1978,7 +1978,7 @@
   1822 00:8382: 8D 27 00              sta faca+s_word       ;effective ending bank
   1823 00:8385: B0 27                 bcs _0100050          ;end address > $FFFFFF
   1824                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 34
+  Sat Jan 22 2022 11:43                                                                                                Page 34
 
 
   1825 00:8387: 20 34 8B     _0100020 jsr facasize          ;check ending...
@@ -2038,7 +2038,7 @@
 + 1875 00:83CD: E2 20                 .db $e2,$20
   1876 00:83CF: AD 13 00              lda reg_srx
   1877 00:83D2: 48                    pha                   ;restore SR
-  Sun Nov 21 2021 15:13                                                                                                Page 35
+  Sat Jan 22 2022 11:43                                                                                                Page 35
 
 
   1878 00:83D3: AD 1E 00              lda reg_dbx
@@ -2098,7 +2098,7 @@
   1927 00:841A: 4B                    phk                   ;get &...
   1928 00:841B: 68                    pla                   ;save...
   1929 00:841C: 8D 10 00              sta reg_pbx           ;return PB
-  Sun Nov 21 2021 15:13                                                                                                Page 36
+  Sat Jan 22 2022 11:43                                                                                                Page 36
 
 
   1930 00:841F: 8B                    phb                   ;get &...
@@ -2158,7 +2158,7 @@
   1983 00:8455: B0 29        moncmp   bcs _0120030          ;start not given - quit
   1984                        ;
   1985 00:8457: 20 EA 8A              jsr enddest           ;get end & reference addresses
-  Sun Nov 21 2021 15:13                                                                                                Page 37
+  Sat Jan 22 2022 11:43                                                                                                Page 37
 
 
   1986 00:845A: B0 27                 bcs _0120040          ;range or other error
@@ -2218,7 +2218,7 @@
 + 2034 00:849B: E2 20                 .db $e2,$20
   2035                                 longx
 + 2035 00:849D: C2 10                 .db $c2,$10
-  Sun Nov 21 2021 15:13                                                                                                Page 38
+  Sat Jan 22 2022 11:43                                                                                                Page 38
 
 
   2036 00:849F: AD 3B 00              lda operand+s_word    ;target bank
@@ -2278,7 +2278,7 @@
   2089 00:84EC: 20 10 8B              jsr facaddra          ;copy starting address
   2090 00:84EF: 20 46 8B              jsr getparm           ;get ending address
   2091 00:84F2: 90 1B                 bcc _0140020          ;gotten
-  Sun Nov 21 2021 15:13                                                                                                Page 39
+  Sat Jan 22 2022 11:43                                                                                                Page 39
 
 
   2092                        ;
@@ -2338,7 +2338,7 @@
   2142 00:8540: B0 64                 bcs _0150020          ;out of range - error...
   2143                        ;
   2144 00:8542: 20 10 8B              jsr facaddra          ;store start
-  Sun Nov 21 2021 15:13                                                                                                Page 40
+  Sat Jan 22 2022 11:43                                                                                                Page 40
 
 
   2145 00:8545: 20 46 8B              jsr getparm           ;evaluate end
@@ -2398,7 +2398,7 @@
   2194                        ;
   2195 00:85A3: 4C FF 80     _0150010 jmp monce             ;goto command executive
   2196                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 41
+  Sat Jan 22 2022 11:43                                                                                                Page 41
 
 
   2197 00:85A6: 4C 3F 81     _0150020 jmp monerr            ;goto error handler
@@ -2458,7 +2458,7 @@
   2250                        ;
   2251 00:85F0: 4C 3F 81     _0160060 jmp monerr            ;goto error handler
   2252                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 42
+  Sat Jan 22 2022 11:43                                                                                                Page 42
 
 
   2253                        ;================================================================================
@@ -2518,7 +2518,7 @@
   2307                        ;
   2308 00:8630: B9 2D 8E              lda rcvltab,y         ;determine number of bytes...
   2309 00:8633: C9 03                 cmp #s_word+1         ;to store
-  Sun Nov 21 2021 15:13                                                                                                Page 43
+  Sat Jan 22 2022 11:43                                                                                                Page 43
 
 
   2310 00:8635: 6E 34 00              ror facc+s_byte       ;condition flag
@@ -2578,7 +2578,7 @@
   2362                        ; * *                                         * *
   2363                        ; * * S T A R T   o f   S U B R O U T I N E S * *
   2364                        ; * *                                         * *
-  Sun Nov 21 2021 15:13                                                                                                Page 44
+  Sat Jan 22 2022 11:43                                                                                                Page 44
 
 
   2365                        ; * * * * * * * * * * * * * * * * * * * * * * * *
@@ -2638,7 +2638,7 @@
   2419                        ;
   2420 00:867F: 20 71 FF     dpycodaa jsr putcha            ;print prefix
   2421 00:8682: 20 38 88              jsr printspc          ;space
-  Sun Nov 21 2021 15:13                                                                                                Page 45
+  Sat Jan 22 2022 11:43                                                                                                Page 45
 
 
   2422 00:8685: 20 F4 87              jsr prntladr          ;print long address
@@ -2698,7 +2698,7 @@
   2474                        ;
   2475                        ;	get & display operand bytes...
   2476                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 46
+  Sat Jan 22 2022 11:43                                                                                                Page 46
 
 
   2477 00:86D5: 8E 4D 00     dpycod01 stx iopsize           ;operand size...
@@ -2758,7 +2758,7 @@
   2531                        ;	display operand...
   2532                        ;
   2533 00:872B: AD 4D 00              lda iopsize           ;operand size
-  Sun Nov 21 2021 15:13                                                                                                Page 47
+  Sat Jan 22 2022 11:43                                                                                                Page 47
 
 
   2534 00:872E: F0 7C                 beq clearlin          ;zero, disassembly finished
@@ -2818,7 +2818,7 @@
   2585 00:8788: 7A                    ply                   ;symbology MSB
   2586 00:8789: E8                    inx                   ;move past preamble
   2587 00:878A: D0 01                 bne _0220050
-  Sun Nov 21 2021 15:13                                                                                                Page 48
+  Sat Jan 22 2022 11:43                                                                                                Page 48
 
 
   2588                        ;
@@ -2878,7 +2878,7 @@
   2641                        ;         lda #memprfx
   2642                        ;         jsr putcha            ;display prefix
   2643 00:87B7: 20 F4 87              jsr prntladr          ;print 24 bit address
-  Sun Nov 21 2021 15:13                                                                                                Page 49
+  Sat Jan 22 2022 11:43                                                                                                Page 49
 
 
   2644 00:87BA: A2 00                 ldx #0                ;string buffer index
@@ -2938,7 +2938,7 @@
   2697                                 slonga
 + 2697 00:87FD: C2 20                 .db $c2,$20
   2698 00:87FF: AD 1F 00              lda addra             ;get 16 bit address
-  Sun Nov 21 2021 15:13                                                                                                Page 50
+  Sat Jan 22 2022 11:43                                                                                                Page 50
 
 
   2699 00:8802: 28                    plp                   ;restore register sizes
@@ -2998,7 +2998,7 @@
   2749                        ;
   2750                        ;	Calling Example : ldx #3
   2751                        ;	                  jsr multspc    ;print 3 spaces
-  Sun Nov 21 2021 15:13                                                                                                Page 51
+  Sat Jan 22 2022 11:43                                                                                                Page 51
 
 
   2752                        ;
@@ -3058,7 +3058,7 @@
   2806                        ;	                  SP+2: string address MSB
   2807                        ;
   2808                        ;	Register Returns: .A: used
-  Sun Nov 21 2021 15:13                                                                                                Page 52
+  Sat Jan 22 2022 11:43                                                                                                Page 52
 
 
   2809                        ;	                  .B: entry value
@@ -3118,7 +3118,7 @@
   2857                        ;
   2858                        ;================================================================================
   2859                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 53
+  Sat Jan 22 2022 11:43                                                                                                Page 53
 
 
   2860                        ;ascbin: CONVERT NULL-TERMINATED ASCII NUMBER STRING TO BINARY
@@ -3178,7 +3178,7 @@
   2913 00:887A: 6E 40 00              ror radix             ;flag decimal conversion
   2914                        ;
   2915 00:887D: BD 15 8E     _0270040 lda basetab,x         ;number bases table
-  Sun Nov 21 2021 15:13                                                                                                Page 54
+  Sat Jan 22 2022 11:43                                                                                                Page 54
 
 
   2916 00:8880: 8D 4E 00              sta range             ;set valid numeral range
@@ -3238,7 +3238,7 @@
   2968                        ;
   2969                        ;	compute N*base for binary, octal or hex...
   2970                        ;	or N*8 for decimal...
-  Sun Nov 21 2021 15:13                                                                                                Page 55
+  Sat Jan 22 2022 11:43                                                                                                Page 55
 
 
   2971                        ;
@@ -3298,7 +3298,7 @@
   3021                        ;
   3022 00:8911: B0 01                 bcs ascbin04          ;overflow - error
   3023                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 56
+  Sat Jan 22 2022 11:43                                                                                                Page 56
 
 
   3024                        ;
@@ -3358,7 +3358,7 @@
   3077 00:8932: 60                    rts
   3078                        ;
   3079                        ;================================================================================
-  Sun Nov 21 2021 15:13                                                                                                Page 57
+  Sat Jan 22 2022 11:43                                                                                                Page 57
 
 
   3080                        ;
@@ -3418,7 +3418,7 @@
   3134 00:8965: A2 00        _0290040 ldx #0                ;operand index
   3135 00:8967: A0 05                 ldy #s_sfac-1         ;workspace index
   3136                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 58
+  Sat Jan 22 2022 11:43                                                                                                Page 58
 
 
   3137 00:8969: BD 25 00     _0290050 lda faca,x            ;copy operand to...
@@ -3478,7 +3478,7 @@
   3191 00:89BA: 90 02                 bcc _0290120          ;is 0-9
   3192                        ;
   3193 00:89BC: 69 06                 adc #a_hexdec         ;apply hex adjust
-  Sun Nov 21 2021 15:13                                                                                                Page 59
+  Sat Jan 22 2022 11:43                                                                                                Page 59
 
 
   3194                        ;
@@ -3538,7 +3538,7 @@
   3248                        ;
   3249 00:89F1: 08           clrfaca  php
   3250                                 slonga
-  Sun Nov 21 2021 15:13                                                                                                Page 60
+  Sat Jan 22 2022 11:43                                                                                                Page 60
 
 
 + 3250 00:89F2: C2 20                 .db $c2,$20
@@ -3598,7 +3598,7 @@
   3303 00:8A35: 9D 2D 00              sta facb,x            ;new partial result
   3304 00:8A38: CA                    dex
   3305 00:8A39: 10 F4                 bpl _1300050
-  Sun Nov 21 2021 15:13                                                                                                Page 61
+  Sat Jan 22 2022 11:43                                                                                                Page 61
 
 
   3306                        ;
@@ -3658,7 +3658,7 @@
   3359 00:8A73: AD 22 00              lda addrb             ;ending address
   3360 00:8A76: ED 1F 00              sbc addra             ;starting address
   3361 00:8A79: 8D 2D 00              sta facb              ;byte count
-  Sun Nov 21 2021 15:13                                                                                                Page 62
+  Sat Jan 22 2022 11:43                                                                                                Page 62
 
 
   3362                                 shorta
@@ -3718,7 +3718,7 @@
 + 3406 00:8AA9: 00                    .db >cpcodeee-cpcode-1
   3407                        ;
   3408                        _1320010 ldalx cpcode          ;transfer copy code to...
-  Sun Nov 21 2021 15:13                                                                                                Page 63
+  Sat Jan 22 2022 11:43                                                                                                Page 63
 
 
 + 3408 00:8AAA: BF                    .db $bf
@@ -3778,7 +3778,7 @@
   3456                        ;
   3457                        _0330020 shorta
 + 3457 00:8AE7: E2 20                 .db $e2,$20
-  Sun Nov 21 2021 15:13                                                                                                Page 64
+  Sat Jan 22 2022 11:43                                                                                                Page 64
 
 
   3458 00:8AE9: 60                    rts
@@ -3838,7 +3838,7 @@
   3512                        ;================================================================================
   3513                        ;
   3514                        ;facaoper: COPY FACA TO OPERAND
-  Sun Nov 21 2021 15:13                                                                                                Page 65
+  Sat Jan 22 2022 11:43                                                                                                Page 65
 
 
   3515                        ;
@@ -3898,7 +3898,7 @@
   3568                        ;
   3569 00:8B46: 5A           getparm  phy                   ;preserve
   3570 00:8B47: 20 56 88              jsr ascbin            ;convert parameter to binary
-  Sun Nov 21 2021 15:13                                                                                                Page 66
+  Sat Jan 22 2022 11:43                                                                                                Page 66
 
 
   3571 00:8B4A: B0 1F                 bcs _0380040          ;conversion error
@@ -3958,7 +3958,7 @@
   3625                        ;	--------------------------------------------------
   3626                        ;
   3627                        nxtaddra shorta
-  Sun Nov 21 2021 15:13                                                                                                Page 67
+  Sat Jan 22 2022 11:43                                                                                                Page 67
 
 
 + 3627 00:8B71: E2 20                 .db $e2,$20
@@ -4018,7 +4018,7 @@
   3676 00:8B9A: 60                    rts
   3677                        ;
   3678                        ;================================================================================
-  Sun Nov 21 2021 15:13                                                                                                Page 68
+  Sat Jan 22 2022 11:43                                                                                                Page 68
 
 
   3679                        ;
@@ -4078,7 +4078,7 @@
   3729                        ;
   3730                        ;offtarg: CONVERT BRANCH OFFSET TO TARGET ADDRESS
   3731                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 69
+  Sat Jan 22 2022 11:43                                                                                                Page 69
 
 
   3732                        ;	-----------------------------------------------
@@ -4138,7 +4138,7 @@
   3780 00:8C00: 8D 10 00              sta reg_pbx           ;set new PB value
   3781                        ;
   3782 00:8C03: 18           _0430010 clc                   ;no error
-  Sun Nov 21 2021 15:13                                                                                                Page 70
+  Sat Jan 22 2022 11:43                                                                                                Page 70
 
 
   3783                        ;
@@ -4198,7 +4198,7 @@
   3835                        ;	process short forward branch...
   3836                        ;
   3837 00:8C2E: EB                    xba                   ;offset MSB should be zero
-  Sun Nov 21 2021 15:13                                                                                                Page 71
+  Sat Jan 22 2022 11:43                                                                                                Page 71
 
 
   3838 00:8C2F: D0 22                 bne _0440060          ;it isn't - out of range
@@ -4258,7 +4258,7 @@
   3892                        ;================================================================================
   3893                        ;
   3894                        ;getchar: GET A CHARACTER FROM INPUT BUFFER
-  Sun Nov 21 2021 15:13                                                                                                Page 72
+  Sat Jan 22 2022 11:43                                                                                                Page 72
 
 
   3895                        ;
@@ -4318,7 +4318,7 @@
   3948                        ;	          accepted.  Excess input will be discarded.
   3949                        ;	-----------------------------------------------------
   3950                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 73
+  Sat Jan 22 2022 11:43                                                                                                Page 73
 
 
   3951 00:8C6C: 9C 49 00     getpat   stz status            ;clear pattern type indicator
@@ -4378,7 +4378,7 @@
   4005                        ;
   4006                        ;	evaluation error...
   4007                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 74
+  Sat Jan 22 2022 11:43                                                                                                Page 74
 
 
   4008 00:8CBC: E2 81        _0450080 sep #%10000001
@@ -4438,7 +4438,7 @@
   4062                        
   4063 00:8CD7: AE 3D 00              ldx ibufidx           ;starting buffer index
   4064                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 75
+  Sat Jan 22 2022 11:43                                                                                                Page 75
 
 
   4065                        ;
@@ -4498,7 +4498,7 @@
   4119 00:8D10: C9 08        _0470060 cmp #a_bs             ;backspace?
   4120 00:8D12: D0 C6                 bne _0470010          ;no
   4121                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 76
+  Sat Jan 22 2022 11:43                                                                                                Page 76
 
 
   4122 00:8D14: 8A                    txa
@@ -4558,7 +4558,7 @@
   4175 00:8D2D: C9 61                 cmp #a_asclcl         ;check char range
   4176 00:8D2F: 90 06                 bcc _0480010          ;not LC alpha
   4177                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 77
+  Sat Jan 22 2022 11:43                                                                                                Page 77
 
 
   4178 00:8D31: C9 7B                 cmp #a_asclch+s_byte
@@ -4618,7 +4618,7 @@
   4231                        
   4232                        
   4233                        LOADS19_1:
-  Sun Nov 21 2021 15:13                                                                                                Page 78
+  Sat Jan 22 2022 11:43                                                                                                Page 78
 
 
   4234 00:8D4D: 20 D8 8D     		JSR	getc 				;
@@ -4678,7 +4678,7 @@
   4283 00:8DAF: 0A           		ASL	A				;
   4284 00:8DB0: 0A           		ASL	A				;
   4285 00:8DB1: 0A           		ASL	A				;
-  Sun Nov 21 2021 15:13                                                                                                Page 79
+  Sat Jan 22 2022 11:43                                                                                                Page 79
 
 
   4286 00:8DB2: 0A           		ASL	A				;
@@ -4738,7 +4738,7 @@
   4340                        ;
   4341                        ;COMMAND PROCESSING DATA TABLES
   4342                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 80
+  Sat Jan 22 2022 11:43                                                                                                Page 80
 
 
   4343                        ;
@@ -4798,7 +4798,7 @@
   4397 00:8E2D: 02           rcvltab  .db s_mpupbx+s_byte ; PB
   4398 00:8E2E: 03                    .db s_mpupcx+s_byte ; PC
   4399 00:8E2F: 02                    .db s_mpusrx+s_byte ; SR
-  Sun Nov 21 2021 15:13                                                                                                Page 81
+  Sat Jan 22 2022 11:43                                                                                                Page 81
 
 
   4400 00:8E30: 03                    .db s_word+s_byte   ; .C
@@ -4858,7 +4858,7 @@
   4454 00:8E84: C6 64                 .dw mne_brk         ; 39 - BRK
   4455 00:8E86: 96 6B                 .dw mne_jml         ; 40 - JML
   4456 00:8E88: 26 6C                 .dw mne_rol         ; 41 - ROL
-  Sun Nov 21 2021 15:13                                                                                                Page 82
+  Sat Jan 22 2022 11:43                                                                                                Page 82
 
 
   4457 00:8E8A: 46 6C                 .dw mne_bpl         ; 42 - BPL
@@ -4918,7 +4918,7 @@
   4511                        ;
   4512                        ;	mnemonic lookup indices in opcode order...
   4513                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 83
+  Sat Jan 22 2022 11:43                                                                                                Page 83
 
 
   4514 00:8EEE: 27           mnetabix .db mne_brkx        ; $00  BRK
@@ -4978,7 +4978,7 @@
   4568 00:8F21: 1D                    .db mne_andx        ; $33  AND (<offset>,S),Y
   4569 00:8F22: 46                    .db mne_bitx        ; $34  BIT dp,X
   4570 00:8F23: 1D                    .db mne_andx        ; $35  AND dp,X
-  Sun Nov 21 2021 15:13                                                                                                Page 84
+  Sat Jan 22 2022 11:43                                                                                                Page 84
 
 
   4571 00:8F24: 29                    .db mne_rolx        ; $36  ROL dp,X
@@ -5038,7 +5038,7 @@
   4625 00:8F57: 10                    .db mne_adcx        ; $69  ADC #
   4626 00:8F58: 3E                    .db mne_rorx        ; $6A  ROR A
   4627 00:8F59: 2E                    .db mne_rtlx        ; $6B  RTL
-  Sun Nov 21 2021 15:13                                                                                                Page 85
+  Sat Jan 22 2022 11:43                                                                                                Page 85
 
 
   4628 00:8F5A: 36                    .db mne_jmpx        ; $6C  JMP (abs)
@@ -5098,7 +5098,7 @@
   4682 00:8F8D: 07                    .db mne_stax        ; $9F  STA absl,X
   4683                        ;
   4684 00:8F8E: 53                    .db mne_ldyx        ; $A0  LDY #
-  Sun Nov 21 2021 15:13                                                                                                Page 86
+  Sat Jan 22 2022 11:43                                                                                                Page 86
 
 
   4685 00:8F8F: 01                    .db mne_ldax        ; $A1  LDA (dp,X)
@@ -5158,7 +5158,7 @@
   4739 00:8FC2: 21                    .db mne_peix        ; $D4  PEI dp
   4740 00:8FC3: 35                    .db mne_cmpx        ; $D5  CMP dp,X
   4741 00:8FC4: 12                    .db mne_decx        ; $D6  DEC dp,X
-  Sun Nov 21 2021 15:13                                                                                                Page 87
+  Sat Jan 22 2022 11:43                                                                                                Page 87
 
 
   4742 00:8FC5: 35                    .db mne_cmpx        ; $D7  CMP [dp],Y
@@ -5218,7 +5218,7 @@
   4796                        ;	    ||||          0011  dp,Y or abs,Y
   4797                        ;	    ||||          0100  (dp) or (abs)
   4798                        ;	    ||||          0101  [dp] or [abs]
-  Sun Nov 21 2021 15:13                                                                                                Page 88
+  Sat Jan 22 2022 11:43                                                                                                Page 88
 
 
   4799                        ;	    ||||          0110  [dp],Y
@@ -5278,7 +5278,7 @@
   4853 00:9006: 00                    .db ops0|am_nam   ; $18  CLC
   4854 00:9007: 20                    .db ops2|am_nam   ; $19  ORA abs
   4855 00:9008: 00                    .db ops0|am_nam   ; $1A  INC A
-  Sun Nov 21 2021 15:13                                                                                                Page 89
+  Sat Jan 22 2022 11:43                                                                                                Page 89
 
 
   4856 00:9009: 00                    .db ops0|am_nam   ; $1B  TCS
@@ -5338,7 +5338,7 @@
   4910 00:903C: 20                    .db ops2|am_nam   ; $4E  LSR abs
   4911 00:903D: 30                    .db ops3|am_nam   ; $4F  EOR absl
   4912                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 90
+  Sat Jan 22 2022 11:43                                                                                                Page 90
 
 
   4913 00:903E: 50                    .db bop1|am_nam   ; $50  BVC abs
@@ -5398,7 +5398,7 @@
   4967 00:9071: 19                    .db ops1|am_stk   ; $83  STA <offset>,S
   4968 00:9072: 10                    .db ops1|am_nam   ; $84  STY dp
   4969 00:9073: 10                    .db ops1|am_nam   ; $85  STA dp
-  Sun Nov 21 2021 15:13                                                                                                Page 91
+  Sat Jan 22 2022 11:43                                                                                                Page 91
 
 
   4970 00:9074: 10                    .db ops1|am_nam   ; $86  STX dp
@@ -5458,7 +5458,7 @@
   5024 00:90A7: 23                    .db ops2|am_adry  ; $B9  LDA abs,Y
   5025 00:90A8: 00                    .db ops0|am_nam   ; $BA  TSX
   5026 00:90A9: 00                    .db ops0|am_nam   ; $BB  TYX
-  Sun Nov 21 2021 15:13                                                                                                Page 92
+  Sat Jan 22 2022 11:43                                                                                                Page 92
 
 
   5027 00:90AA: 22                    .db ops2|am_adrx  ; $BC  LDY abs,X
@@ -5518,7 +5518,7 @@
   5081 00:90DD: 30                    .db ops3|am_nam   ; $EF  SBC absl
   5082                        ;
   5083 00:90DE: 50                    .db bop1|am_nam   ; $F0  BEQ abs
-  Sun Nov 21 2021 15:13                                                                                                Page 93
+  Sat Jan 22 2022 11:43                                                                                                Page 93
 
 
   5084 00:90DF: 18                    .db ops1|am_indy  ; $F1  SBC (<dp>),Y
@@ -5578,7 +5578,7 @@
   5136 00:9126: 28 29 2C 59  ms_indy  .db "(),Y",0        ;(<dp>),Y
        00:912A: 00 
   5137 00:912B: 2C 24 00     ms_move  .db ",$",0          ;<sbnk>,<dbnk>
-  Sun Nov 21 2021 15:13                                                                                                Page 94
+  Sat Jan 22 2022 11:43                                                                                                Page 94
 
 
   5138 00:912E: 20 2C 53 00  ms_stk   .db " ,S",0         ;<offset>,S
@@ -5638,7 +5638,7 @@
 + 5178 00:9155: 0A                    .db a_lf
   5179 00:9156: 53 75 70 65           .db "Supermon 816 "
        00:915A: 72 6D 6F 6E 
-  Sun Nov 21 2021 15:13                                                                                                Page 95
+  Sat Jan 22 2022 11:43                                                                                                Page 95
 
 
        00:915E: 20 38 31 36 
@@ -5698,7 +5698,7 @@
   5199                        ;
   5200                        mm_rts   rb
 + 5200 00:91AC: 07                    .db a_bel
-  Sun Nov 21 2021 15:13                                                                                                Page 96
+  Sat Jan 22 2022 11:43                                                                                                Page 96
 
 
   5201                                 lf
@@ -5758,7 +5758,7 @@
        00:922C: 7C 2F 20 2F 
        00:9230: 5F 0D 0A 
   5219 00:9233: 7C 20 20 5F  		.db   "|  _ \___ \ > _ < | |  _ \",$0D,$0A
-  Sun Nov 21 2021 15:13                                                                                                Page 97
+  Sat Jan 22 2022 11:43                                                                                                Page 97
 
 
        00:9237: 20 5C 5F 5F 
@@ -5818,7 +5818,7 @@
   5233                        	.end
 
 
-  Sun Nov 21 2021 15:13                                                                                                Page 98
+  Sat Jan 22 2022 11:43                                                                                                Page 98
 
 
       Lines assembled: 5437

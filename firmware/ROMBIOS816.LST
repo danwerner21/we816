@@ -1,4 +1,4 @@
-  Sun Nov 21 2021 15:13                                                                                                Page 1
+  Sat Jan 22 2022 11:43                                                                                                Page 1
 
 
                                              ***************************************
@@ -58,7 +58,7 @@
     44             0000FE17   via1t1lh		.equ	$FE17		; Register
     45             0000FE18   via1t2cl		.equ	$FE18		; Register
     46             0000FE19   via1t2ch		.equ	$FE19		; Register
-  Sun Nov 21 2021 15:13                                                                                                Page 2
+  Sat Jan 22 2022 11:43                                                                                                Page 2
 
 
     47             0000FE1A   via1sr  		.equ	$FE1A		; Register
@@ -118,7 +118,7 @@
    101             0000031B   IECBUFFH		.equ 	$031B		; High byte IEC buffer Pointer
    102             0000031C   IECDEVN			.equ 	$031C		; IEC Device Number
    103             0000031D   IECSTRTL		.equ 	$031D		; low byte IEC Start Address Pointer
-  Sun Nov 21 2021 15:13                                                                                                Page 3
+  Sat Jan 22 2022 11:43                                                                                                Page 3
 
 
    104             0000031E   IECSTRTH		.equ 	$031E		; High byte IEC Start Address Pointer
@@ -163,8 +163,10 @@
    141             00000001   TRUE		.EQU    1
    142             00000000   FALSE		.EQU 	0
    143                        
-   144                        
-   145                        	INCLUDE 'MACROS.ASM'
+   144             00000020   KBD_DELAY 	.EQU 	32			; keyboard delay in MS.   Set higher if keys bou
+                    nce, set lower if keyboard feels slow
+   145                        
+   146                        	INCLUDE 'MACROS.ASM'
      1                        ;_________________________________________________________________________________________________
                     __
      2                        ;
@@ -176,11 +178,11 @@
      7                                PHX
      8                                phy
      9                                pha
+  Sat Jan 22 2022 11:43                                                                                                Page 4
+
+
     10                                php
     11                                .endm
-  Sun Nov 21 2021 15:13                                                                                                Page 4
-
-
     12                        
     13                        RestoreContext  .macro                ; Restore Complete Context at the end of a Sub
     14                                plp
@@ -228,246 +230,246 @@
     56                                .endm
     57                        
     58                        ;
-   146                        
-   147                        ; CHOOSE ONE CONSOLE IO DEVICE
-   148                        BIOS	SECTION 	OFFSET $E000
-   149                        
-   150                        ;__COLD_START___________________________________________________
-   151                        ;
-   152                        ; PERFORM SYSTEM COLD INIT
-   153                        ;
-   154                        ;_______________________________________________________________
-   155                        COLD_START:
-  Sun Nov 21 2021 15:13                                                                                                Page 5
+   147                        
+   148                        ; CHOOSE ONE CONSOLE IO DEVICE
+   149                        BIOS	SECTION 	OFFSET $E000
+   150                        
+   151                        ;__COLD_START___________________________________________________
+   152                        ;
+   153                        ; PERFORM SYSTEM COLD INIT
+   154                        ;
+  Sat Jan 22 2022 11:43                                                                                                Page 5
 
 
-   156 00:E000: D8                  		CLD			; VERIFY DECIMAL MODE IS OFF
-   157                        
-   158 00:E001: 18           		CLC 			;
-   159 00:E002: FB           		XCE 			; SET NATIVE MODE
-   160                        		AccumulatorIndex16
-+  160 00:E003: C2 30        		REP #$30 		; 16 bit Index registers 
-+  160                        		LONGA ON
-+  160                                LONGI ON
-   161 00:E005: A9 FF 7F     		LDA #STACK 		; get the stack address
-   162 00:E008: 1B           		TCS 			; and set the stack to it
-   163                        
-   164 00:E009: 20 57 E0             	JSR CONSOLE_INIT	; Init UART
-   165                        		AccumulatorIndex8
-+  165 00:E00C: E2 30        		SEP #$30 		; 8 bit Index registers 
-+  165                        		LONGA OFF
-+  165                                LONGI OFF
-   166 00:E00E: 20 21 F3     		JSR INITIEC		;	init IEC port
-   167                        					; Announce that system is alive
-   168                        
-   169 00:E011: 20 56 E0     		JSR BATEST		; Perform Basic Assurance Test
-   170                        
-   171                        		Accumulator16
-+  171 00:E014: C2 20        		REP #$20 		; 16 bit Index registers 
-+  171                        		LONGA ON
-   172 00:E016: A9 55 E0             	LDA #INTRETURN 		;
-   173 00:E019: 8D 00 03             	STA ICOPVECTOR
-   174 00:E01C: 8D 02 03     		STA IBRKVECTOR
-   175 00:E01F: 8D 04 03     		STA IABTVECTOR
-   176 00:E022: 8D 06 03     		STA INMIVECTOR
-   177 00:E025: 8D 08 03     		STA IIRQVECTOR
-   178 00:E028: 8D 0A 03     		STA IECOPVECTOR
-   179 00:E02B: 8D 0C 03     		STA IEABTVECTOR
-   180 00:E02E: 8D 0E 03     		STA IENMIVECTOR
-   181 00:E031: 8D 10 03     		STA IEINTVECTOR
-   182                        
-   183                        		AccumulatorIndex8
-+  183 00:E034: E2 30        		SEP #$30 		; 8 bit Index registers 
-+  183                        		LONGA OFF
-+  183                                LONGI OFF
-   184 00:E036: 5C 00 10 FF          	JML  $FF1000		; START BASIC
-   185                        
+   155                        ;_______________________________________________________________
+   156                        COLD_START:
+   157 00:E000: D8                  		CLD			; VERIFY DECIMAL MODE IS OFF
+   158                        
+   159 00:E001: 18           		CLC 			;
+   160 00:E002: FB           		XCE 			; SET NATIVE MODE
+   161                        		AccumulatorIndex16
++  161 00:E003: C2 30        		REP #$30 		; 16 bit Index registers 
++  161                        		LONGA ON
++  161                                LONGI ON
+   162 00:E005: A9 FF 7F     		LDA #STACK 		; get the stack address
+   163 00:E008: 1B           		TCS 			; and set the stack to it
+   164                        
+   165 00:E009: 20 57 E0             	JSR CONSOLE_INIT	; Init UART
+   166                        		AccumulatorIndex8
++  166 00:E00C: E2 30        		SEP #$30 		; 8 bit Index registers 
++  166                        		LONGA OFF
++  166                                LONGI OFF
+   167 00:E00E: 20 21 F3     		JSR INITIEC		;	init IEC port
+   168                        					; Announce that system is alive
+   169                        
+   170 00:E011: 20 56 E0     		JSR BATEST		; Perform Basic Assurance Test
+   171                        
+   172                        		Accumulator16
++  172 00:E014: C2 20        		REP #$20 		; 16 bit Index registers 
++  172                        		LONGA ON
+   173 00:E016: A9 55 E0             	LDA #INTRETURN 		;
+   174 00:E019: 8D 00 03             	STA ICOPVECTOR
+   175 00:E01C: 8D 02 03     		STA IBRKVECTOR
+   176 00:E01F: 8D 04 03     		STA IABTVECTOR
+   177 00:E022: 8D 06 03     		STA INMIVECTOR
+   178 00:E025: 8D 08 03     		STA IIRQVECTOR
+   179 00:E028: 8D 0A 03     		STA IECOPVECTOR
+   180 00:E02B: 8D 0C 03     		STA IEABTVECTOR
+   181 00:E02E: 8D 0E 03     		STA IENMIVECTOR
+   182 00:E031: 8D 10 03     		STA IEINTVECTOR
+   183                        
+   184                        		AccumulatorIndex8
++  184 00:E034: E2 30        		SEP #$30 		; 8 bit Index registers 
++  184                        		LONGA OFF
++  184                                LONGI OFF
+   185 00:E036: 5C 00 10 FF          	JML  $FF1000		; START BASIC
    186                        
-   187 00:E03A: 6C 00 03     RCOPVECTOR:	JMP (ICOPVECTOR)
-   188 00:E03D: 6C 02 03     RBRKVECTOR:	JMP (IBRKVECTOR)
-   189 00:E040: 6C 04 03     RABTVECTOR:	JMP (IABTVECTOR)
-   190 00:E043: 6C 06 03     RNMIVECTOR:	JMP (INMIVECTOR)
-   191 00:E046: 6C 08 03     RIRQVECTOR:	JMP (IIRQVECTOR)
-   192 00:E049: 6C 0A 03     RECOPVECTOR:	JMP (IECOPVECTOR)
-   193 00:E04C: 6C 0C 03     REABTVECTOR:	JMP (IEABTVECTOR)
-   194 00:E04F: 6C 0E 03     RENMIVECTOR:	JMP (IENMIVECTOR)
-   195 00:E052: 6C 10 03     REINTVECTOR: 	JMP (IEINTVECTOR)
-   196                        
+   187                        
+   188 00:E03A: 6C 00 03     RCOPVECTOR:	JMP (ICOPVECTOR)
+   189 00:E03D: 6C 02 03     RBRKVECTOR:	JMP (IBRKVECTOR)
+   190 00:E040: 6C 04 03     RABTVECTOR:	JMP (IABTVECTOR)
+   191 00:E043: 6C 06 03     RNMIVECTOR:	JMP (INMIVECTOR)
+   192 00:E046: 6C 08 03     RIRQVECTOR:	JMP (IIRQVECTOR)
+   193 00:E049: 6C 0A 03     RECOPVECTOR:	JMP (IECOPVECTOR)
+   194 00:E04C: 6C 0C 03     REABTVECTOR:	JMP (IEABTVECTOR)
+   195 00:E04F: 6C 0E 03     RENMIVECTOR:	JMP (IENMIVECTOR)
+   196 00:E052: 6C 10 03     REINTVECTOR: 	JMP (IEINTVECTOR)
    197                        
-   198                        ;__INTRETURN____________________________________________________
-   199                        ;
-   200                        ; Handle Interrupts
-   201                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 6
+   198                        
+   199                        ;__INTRETURN____________________________________________________
+   200                        ;
+  Sat Jan 22 2022 11:43                                                                                                Page 6
 
 
-   202                        ;_______________________________________________________________
-   203                        ;
-   204                        INTRETURN:
-   205 00:E055: 40           		RTI 			;
-   206                        
-   207                        ;__BATEST_______________________________________________________
-   208                        ;
-   209                        ; Perform Basic Hardware Assurance Test
-   210                        ;
-   211                        ;_______________________________________________________________
-   212                        ;
-   213                        BATEST:
-   214 00:E056: 60           		RTS
-   215                        
+   201                        ; Handle Interrupts
+   202                        ;
+   203                        ;_______________________________________________________________
+   204                        ;
+   205                        INTRETURN:
+   206 00:E055: 40           		RTI 			;
+   207                        
+   208                        ;__BATEST_______________________________________________________
+   209                        ;
+   210                        ; Perform Basic Hardware Assurance Test
+   211                        ;
+   212                        ;_______________________________________________________________
+   213                        ;
+   214                        BATEST:
+   215 00:E056: 60           		RTS
    216                        
    217                        
-   218                        ;__CONSOLE_INIT_________________________________________________
-   219                        ;
-   220                        ; Initialize Attached Console Devices
-   221                        ;
-   222                        ;_______________________________________________________________
-   223                        ;
-   224                        CONSOLE_INIT:
-   225 00:E057: 08           		PHP
-   226                        		AccumulatorIndex8
-+  226 00:E058: E2 30        		SEP #$30 		; 8 bit Index registers 
-+  226                        		LONGA OFF
-+  226                                LONGI OFF
-   227                        
-   228 00:E05A: 20 D3 E0         		jsr SERIAL_CONSOLE_INIT
-   229 00:E05D: 20 3B E1         		JSR Setup9918
-   230 00:E060: 20 0E E4         		JSR LoadFont
-   231 00:E063: 20 CE E3         		JSR ClearScreen
-   232 00:E066: A9 F0        		lda #$F0
-   233 00:E068: 20 81 E2         		JSR SetColor
-   234 00:E06B: A9 01        		lda #$01
-   235 00:E06D: 8D 41 03     		sta ConsoleDevice
-   236 00:E070: 20 3D EC         		JSR INITKEYBOARD
-   237                        
-   238 00:E073: 28               		plp
-   239 00:E074: 60           		rts
-   240                        
+   218                        
+   219                        ;__CONSOLE_INIT_________________________________________________
+   220                        ;
+   221                        ; Initialize Attached Console Devices
+   222                        ;
+   223                        ;_______________________________________________________________
+   224                        ;
+   225                        CONSOLE_INIT:
+   226 00:E057: 08           		PHP
+   227                        		AccumulatorIndex8
++  227 00:E058: E2 30        		SEP #$30 		; 8 bit Index registers 
++  227                        		LONGA OFF
++  227                                LONGI OFF
+   228                        
+   229 00:E05A: 20 D3 E0         		jsr SERIAL_CONSOLE_INIT
+   230 00:E05D: 20 3B E1         		JSR Setup9918
+   231 00:E060: 20 0E E4         		JSR LoadFont
+   232 00:E063: 20 CE E3         		JSR ClearScreen
+   233 00:E066: A9 F0        		lda #$F0
+   234 00:E068: 20 81 E2         		JSR SetColor
+   235 00:E06B: A9 01        		lda #$01
+   236 00:E06D: 8D 41 03     		sta ConsoleDevice
+   237 00:E070: 20 3D EC         		JSR INITKEYBOARD
+   238                        
+   239 00:E073: 28               		plp
+   240 00:E074: 60           		rts
    241                        
-   242                        ;__OUTCH_______________________________________________________
-   243                        ;
-   244                        ; OUTPUT CHAR IN LOW BYTE OF ACC TO CONSOLE
-   245                        ;
-   246                        ; Current Console Device stored in ConsoleDevice
-   247                        ;
-   248                        ; 0=Serial
-   249                        ; 1=On Board 9918/KB
-   250                        ;______________________________________________________________
-   251                        OUTCH:
-   252 00:E075: DA           		phx
-   253 00:E076: 5A           		phy
-   254 00:E077: 08           		PHP
-   255                        		AccumulatorIndex8
-  Sun Nov 21 2021 15:13                                                                                                Page 7
+   242                        
+   243                        ;__OUTCH_______________________________________________________
+   244                        ;
+   245                        ; OUTPUT CHAR IN LOW BYTE OF ACC TO CONSOLE
+   246                        ;
+   247                        ; Current Console Device stored in ConsoleDevice
+   248                        ;
+   249                        ; 0=Serial
+   250                        ; 1=On Board 9918/KB
+   251                        ;______________________________________________________________
+   252                        OUTCH:
+   253 00:E075: DA           		phx
+   254 00:E076: 5A           		phy
+  Sat Jan 22 2022 11:43                                                                                                Page 7
 
 
-+  255 00:E078: E2 30        		SEP #$30 		; 8 bit Index registers 
-+  255                        		LONGA OFF
-+  255                                LONGI OFF
-   256 00:E07A: AA           		tax
-   257 00:E07B: AD 41 03     		lda ConsoleDevice
-   258 00:E07E: C9 01        		cmp #$01
-   259 00:E080: D0 08        		bne OUTCH2
-   260 00:E082: 8A           		txa
-   261 00:E083: 20 0F E2         		JSR Outch9918
-   262 00:E086: 28           		plp
-   263 00:E087: 7A           		ply
-   264 00:E088: FA           		plx
-   265 00:E089: 60           		rts
-   266                        
-   267                        ; Default (serial)
-   268                        OUTCH2:
-   269 00:E08A: 8A           	txa
-   270 00:E08B: 20 04 E1     	jsr SERIAL_OUTCH
-   271 00:E08E: 28           	plp
-   272 00:E08F: 7A           	ply
-   273 00:E090: FA           	plx
-   274 00:E091: 60           	rts
-   275                        
+   255 00:E077: 08           		PHP
+   256                        		AccumulatorIndex8
++  256 00:E078: E2 30        		SEP #$30 		; 8 bit Index registers 
++  256                        		LONGA OFF
++  256                                LONGI OFF
+   257 00:E07A: AA           		tax
+   258 00:E07B: AD 41 03     		lda ConsoleDevice
+   259 00:E07E: C9 01        		cmp #$01
+   260 00:E080: D0 08        		bne OUTCH2
+   261 00:E082: 8A           		txa
+   262 00:E083: 20 0F E2         		JSR Outch9918
+   263 00:E086: 28           		plp
+   264 00:E087: 7A           		ply
+   265 00:E088: FA           		plx
+   266 00:E089: 60           		rts
+   267                        
+   268                        ; Default (serial)
+   269                        OUTCH2:
+   270 00:E08A: 8A           	txa
+   271 00:E08B: 20 04 E1     	jsr SERIAL_OUTCH
+   272 00:E08E: 28           	plp
+   273 00:E08F: 7A           	ply
+   274 00:E090: FA           	plx
+   275 00:E091: 60           	rts
    276                        
-   277                        ;__INCHW_______________________________________________________
-   278                        ;
-   279                        ; INPUT CHAR FROM CONSOLE TO ACC  (WAIT FOR CHAR)
-   280                        ;
-   281                        ;______________________________________________________________
-   282                        INCHW:
-   283 00:E092: DA           	phx
-   284 00:E093: 5A           	phy
-   285 00:E094: 08           	PHP
-   286                        	AccumulatorIndex8
-+  286 00:E095: E2 30        		SEP #$30 		; 8 bit Index registers 
-+  286                        		LONGA OFF
-+  286                                LONGI OFF
-   287                        
-   288 00:E097: AD 41 03     	lda ConsoleDevice
-   289 00:E09A: C9 01        	cmp #$01
-   290 00:E09C: D0 07        	bne INCHW2
-   291 00:E09E: 20 4E EC         jsr GetKey
-   292 00:E0A1: 28           	plp
-   293 00:E0A2: 7A           	ply
-   294 00:E0A3: FA           	plx
-   295 00:E0A4: 60           	rts
-   296                        
-   297                        ; Default (serial)
-   298                        INCHW2:
-   299 00:E0A5: 20 17 E1     	jsr SERIAL_INCHW
-   300 00:E0A8: 28           	plp
-   301 00:E0A9: 7A           	ply
-   302 00:E0AA: FA           	plx
-   303 00:E0AB: 60           	rts
-   304                        
+   277                        
+   278                        ;__INCHW_______________________________________________________
+   279                        ;
+   280                        ; INPUT CHAR FROM CONSOLE TO ACC  (WAIT FOR CHAR)
+   281                        ;
+   282                        ;______________________________________________________________
+   283                        INCHW:
+   284 00:E092: DA           	phx
+   285 00:E093: 5A           	phy
+   286 00:E094: 08           	PHP
+   287                        	AccumulatorIndex8
++  287 00:E095: E2 30        		SEP #$30 		; 8 bit Index registers 
++  287                        		LONGA OFF
++  287                                LONGI OFF
+   288                        
+   289 00:E097: AD 41 03     	lda ConsoleDevice
+   290 00:E09A: C9 01        	cmp #$01
+   291 00:E09C: D0 07        	bne INCHW2
+   292 00:E09E: 20 4E EC         jsr GetKey
+   293 00:E0A1: 28           	plp
+   294 00:E0A2: 7A           	ply
+   295 00:E0A3: FA           	plx
+   296 00:E0A4: 60           	rts
+   297                        
+   298                        ; Default (serial)
+   299                        INCHW2:
+   300 00:E0A5: 20 17 E1     	jsr SERIAL_INCHW
+   301 00:E0A8: 28           	plp
+   302 00:E0A9: 7A           	ply
+   303 00:E0AA: FA           	plx
+   304 00:E0AB: 60           	rts
    305                        
-   306                        ;__INCH________________________________________________________
-  Sun Nov 21 2021 15:13                                                                                                Page 8
+  Sat Jan 22 2022 11:43                                                                                                Page 8
 
 
-   307                        ;
-   308                        ; INPUT CHAR FROM CONSOLE TO ACC
-   309                        ;
-   310                        ;______________________________________________________________
-   311                        INCH:
-   312 00:E0AC: DA           	phx
-   313 00:E0AD: 5A           	phy
-   314 00:E0AE: 08           	PHP
-   315                         	AccumulatorIndex8
-+  315 00:E0AF: E2 30        		SEP #$30 		; 8 bit Index registers 
-+  315                        		LONGA OFF
-+  315                                LONGI OFF
-   316                        
-   317 00:E0B1: AD 41 03     	lda ConsoleDevice
-   318 00:E0B4: C9 01        	cmp #$01
-   319 00:E0B6: D0 0C        	bne INCH2
-   320                        
-   321 00:E0B8: 20 80 EC     	jsr ScanKeyboard
-   322 00:E0BB: C9 FF            cmp #$FF
-   323 00:E0BD: F0 0F            beq INCH2S
-   324 00:E0BF: 20 4E EC         jsr GetKey
-   325 00:E0C2: 80 05        	bra INCH2C
-   326                        
-   327                        ; Default (serial)
-   328                        INCH2:
-   329 00:E0C4: 20 28 E1     	jsr SERIAL_INCH
-   330 00:E0C7: B0 05        	BCS INCH2S
-   331                        
+   306                        
+   307                        ;__INCH________________________________________________________
+   308                        ;
+   309                        ; INPUT CHAR FROM CONSOLE TO ACC
+   310                        ;
+   311                        ;______________________________________________________________
+   312                        INCH:
+   313 00:E0AC: DA           	phx
+   314 00:E0AD: 5A           	phy
+   315 00:E0AE: 08           	PHP
+   316                         	AccumulatorIndex8
++  316 00:E0AF: E2 30        		SEP #$30 		; 8 bit Index registers 
++  316                        		LONGA OFF
++  316                                LONGI OFF
+   317                        
+   318 00:E0B1: AD 41 03     	lda ConsoleDevice
+   319 00:E0B4: C9 01        	cmp #$01
+   320 00:E0B6: D0 0C        	bne INCH2
+   321                        
+   322 00:E0B8: 20 80 EC     	jsr ScanKeyboard
+   323 00:E0BB: C9 FF            cmp #$FF
+   324 00:E0BD: F0 0F            beq INCH2S
+   325 00:E0BF: 20 4E EC         jsr GetKey
+   326 00:E0C2: 80 05        	bra INCH2C
+   327                        
+   328                        ; Default (serial)
+   329                        INCH2:
+   330 00:E0C4: 20 28 E1     	jsr SERIAL_INCH
+   331 00:E0C7: B0 05        	BCS INCH2S
    332                        
-   333                        INCH2C:
-   334 00:E0C9: 28           	plp
-   335 00:E0CA: 7A           	ply
-   336 00:E0CB: FA           	plx
-   337 00:E0CC: 18           	CLC
-   338 00:E0CD: 60           	rts
-   339                        INCH2S:
-   340 00:E0CE: 28           	plp
-   341 00:E0CF: 7A           	ply
-   342 00:E0D0: FA           	plx
-   343 00:E0D1: 38           	SEC
-   344 00:E0D2: 60           	rts
-   345                        
+   333                        
+   334                        INCH2C:
+   335 00:E0C9: 28           	plp
+   336 00:E0CA: 7A           	ply
+   337 00:E0CB: FA           	plx
+   338 00:E0CC: 18           	CLC
+   339 00:E0CD: 60           	rts
+   340                        INCH2S:
+   341 00:E0CE: 28           	plp
+   342 00:E0CF: 7A           	ply
+   343 00:E0D0: FA           	plx
+   344 00:E0D1: 38           	SEC
+   345 00:E0D2: 60           	rts
    346                        
    347                        
-   348                        ;__Device_Driver_Code___________________________________________
-   349                        ;
-   350                        		INCLUDE 'CONSERIAL.ASM'
+   348                        
+   349                        ;__Device_Driver_Code___________________________________________
+   350                        ;
+   351                        		INCLUDE 'CONSERIAL.ASM'
      1                        ;__CONSERIAL______________________________________________________________________________________
                     _
      2                        ;
@@ -476,11 +478,11 @@
      5                        ;	WRITTEN BY: DAN WERNER -- 2/25/2018
      6                        ;
      7                        ;_________________________________________________________________________________________________
+  Sat Jan 22 2022 11:43                                                                                                Page 9
+
+
                     _
      8                        
-  Sun Nov 21 2021 15:13                                                                                                Page 9
-
-
      9                        
     10                                LONGA ON
     11                                LONGI ON
@@ -536,11 +538,11 @@
     61                        ;
     62                        ; OUTPUT CHAR IN LOW BYTE OF ACC TO UART
     63                        ; 
+  Sat Jan 22 2022 11:43                                                                                                Page 10
+
+
     64                        ;______________________________________________________________
     65                        SERIAL_OUTCH:	
-  Sun Nov 21 2021 15:13                                                                                                Page 10
-
-
     66 00:E104: 08           		PHP
     67 00:E105: E2 20               	SEP #$20 			; NEED 8 bit accum for this
     68                        		LONGA OFF 
@@ -596,16 +598,16 @@
    118 00:E130: F0 06        		BEQ	SERIAL_INCH1	; NO CHAR FOUND
    119 00:E132: AD 00 FE     		LDA	UART0			; THEN READ THE CHAR FROM THE UART
    120 00:E135: 28           		PLP 				; RESTORE CPU CONTEXT
+  Sat Jan 22 2022 11:43                                                                                                Page 11
+
+
    121 00:E136: 18           		CLC
    122 00:E137: 60           		RTS
-  Sun Nov 21 2021 15:13                                                                                                Page 11
-
-
    123                        SERIAL_INCH1:
    124 00:E138: 28            		PLP 				; RESTORE CPU CONTEXT
    125 00:E139: 38           		SEC 	
    126 00:E13A: 60           		RTS
-   351                        		INCLUDE 'CONLOCAL.ASM'
+   352                        		INCLUDE 'CONLOCAL.ASM'
      1                        ;__CONLOCAL_______________________________________________________________________________________
      2                        ;
      3                        ;	LOCAL CONSOLE DRIVER FOR THE HOMECOMPUTER3
@@ -656,11 +658,11 @@
     48 00:E140: E2 20                SEP #$20 		; 8 bit accum
     49                        	LONGA OFF
     50                        
+  Sat Jan 22 2022 11:43                                                                                                Page 12
+
+
     51                        ;	Setup Width Parm
     52 00:E142: A9 28        	lda 	#40
-  Sun Nov 21 2021 15:13                                                                                                Page 12
-
-
     53 00:E144: 8D 43 03     	sta 	VIDEOWIDTH
     54                        
     55                        ; Let's set VDP write address to $0000
@@ -716,11 +718,11 @@
    105                        ; Set COLOR table to $2000
    106 00:E182: A9 80        	LDA	#$80
    107 00:E184: 8D 0B FE     	STA	CMDP
+  Sat Jan 22 2022 11:43                                                                                                Page 13
+
+
    108 00:E187: A9 83            	LDA 	#$83
    109 00:E189: 8D 0B FE     	STA	CMDP
-  Sun Nov 21 2021 15:13                                                                                                Page 13
-
-
    110                        
    111                        ;----------------------------------------
    112                        ; Register 4 to $1
@@ -776,11 +778,11 @@
    162                        	LONGI OFF
    163 00:E1BE: AC 31 03     	ldy CSRY
    164 00:E1C1: AE 30 03     	ldx CSRX
+  Sat Jan 22 2022 11:43                                                                                                Page 14
+
+
    165 00:E1C4: 20 8E E2     	jsr SetXY
    166 00:E1C7: 20 34 E4     	JSR DELAY9918
-  Sun Nov 21 2021 15:13                                                                                                Page 14
-
-
    167 00:E1CA: AD 0A FE     	LDA DATAP
    168 00:E1CD: 20 34 E4     	JSR DELAY9918
    169 00:E1D0: AD 0A FE     	LDA DATAP
@@ -836,11 +838,11 @@
    219 00:E210: 5A           	phy
    220 00:E211: 08                   php
    221 00:E212: E2 30                SEP #$30 		; 8 bit accum
+  Sat Jan 22 2022 11:43                                                                                                Page 15
+
+
    222                        	LONGA OFF
    223                        	LONGI OFF
-  Sun Nov 21 2021 15:13                                                                                                Page 15
-
-
    224                        
    225 00:E214: AE 30 03     	ldx CSRX
    226 00:E217: AC 31 03     	ldy CSRY
@@ -896,11 +898,11 @@
    276 00:E26B: F0 06        	beq Outch9918_BS1
    277 00:E26D: CA           	dex
    278 00:E26E: 20 8E E2     	jsr SetXY
+  Sat Jan 22 2022 11:43                                                                                                Page 16
+
+
    279 00:E271: 80 DE        	bra Outch9918_Exit
    280                        Outch9918_BS1:
-  Sun Nov 21 2021 15:13                                                                                                Page 16
-
-
    281 00:E273: C0 00        	cpy #0
    282 00:E275: F0 DA        	beq Outch9918_Exit
    283 00:E277: 88           	DEY
@@ -956,11 +958,11 @@
    333 00:E2A2: 0A           	ASL
    334 00:E2A3: 0A           	ASL
    335 00:E2A4: 0A           	ASL
+  Sat Jan 22 2022 11:43                                                                                                Page 17
+
+
    336 00:E2A5: 0A           	ASL 				; A=A*32
    337 00:E2A6: 8D 36 03     	sta TEMP			;TEMP=A
-  Sun Nov 21 2021 15:13                                                                                                Page 17
-
-
    338 00:E2A9: AD 43 03     	LDA VIDEOWIDTH
    339 00:E2AC: 29 FF 00     	AND #$00FF
    340 00:E2AF: C9 20 00     	CMP #32
@@ -1016,11 +1018,11 @@
    390                        ScrollUp:
    391 00:E2FE: 48           	pha
    392 00:E2FF: DA           	phx
+  Sat Jan 22 2022 11:43                                                                                                Page 18
+
+
    393 00:E300: 5A           	phy
    394 00:E301: 08                   php
-  Sun Nov 21 2021 15:13                                                                                                Page 18
-
-
    395 00:E302: E2 30        	SEP #$30 		; 8 bit accum, 8 bit X&Y
    396                        	LONGA OFF
    397                        	LONGI OFF
@@ -1076,11 +1078,11 @@
    447 00:E34C: AC 31 03     	ldy CSRY
    448 00:E34F: 20 8E E2     	jsr SetXY
    449                        
+  Sat Jan 22 2022 11:43                                                                                                Page 19
+
+
    450 00:E352: 28           	plp
    451 00:E353: 7A           	ply
-  Sun Nov 21 2021 15:13                                                                                                Page 19
-
-
    452 00:E354: FA           	plx
    453 00:E355: 68           	pla
    454 00:E356: 60           	rts
@@ -1136,11 +1138,11 @@
    504 00:E398: 38           	sec
    505 00:E399: ED 36 03     	sbc TEMP
    506 00:E39C: 8D 36 03     	sta TEMP
+  Sat Jan 22 2022 11:43                                                                                                Page 20
+
+
    507 00:E39F: 80 09        	bra CopyVideoMemCont
    508                        CopyVideoMemForward:
-  Sun Nov 21 2021 15:13                                                                                                Page 20
-
-
    509 00:E3A1: 8A           	txa
    510 00:E3A2: A8           	tay
    511 00:E3A3: 18           	clc
@@ -1196,11 +1198,11 @@
    561 00:E3ED: 4C E4 E3     	JMP	ClearScreen1
    562                        
    563                        ENDCLRScreen:
+  Sat Jan 22 2022 11:43                                                                                                Page 21
+
+
    564 00:E3F0: A2 D0 03     	LDX  	#LINEFLGS
    565 00:E3F3: A0 19 00     	LDY 	#25
-  Sun Nov 21 2021 15:13                                                                                                Page 21
-
-
    566 00:E3F6: A9 00        	LDA 	#00
    567                        CLRFLGS:
    568 00:E3F8: 9D 00 00     	STA	0,X
@@ -1256,11 +1258,11 @@
    618 00:E430: 68               	pla
    619 00:E431: FA               	plx
    620 00:E432: 7A               	ply
+  Sat Jan 22 2022 11:43                                                                                                Page 22
+
+
    621 00:E433: 60               	rts
    622                        
-  Sun Nov 21 2021 15:13                                                                                                Page 22
-
-
    623                        DELAY9918:
    624 00:E434: 48                   PHA
    625 00:E435: 48                   PHA             ; MIGHT BE POSSIBLE TO REDUCE DELAY
@@ -1316,11 +1318,11 @@
        00:E4C1: 48 48 30 00 
     18 00:E4C5: 00 00 38 40   .DB $00,$00,$38,$40,$78,$40,$38,$00 ; $EE
        00:E4C9: 78 40 38 00 
+  Sat Jan 22 2022 11:43                                                                                                Page 23
+
+
     19 00:E4CD: 00 10 38 54   .DB $00,$10,$38,$54,$54,$38,$10,$00 ; $ED
        00:E4D1: 54 38 10 00 
-  Sun Nov 21 2021 15:13                                                                                                Page 23
-
-
     20 00:E4D5: 00 00 28 54   .DB $00,$00,$28,$54,$54,$28,$00,$00 ; $EC
        00:E4D9: 54 28 00 00 
     21 00:E4DD: 00 30 48 38   .DB $00,$30,$48,$38,$10,$20,$40,$30 ; $EB
@@ -1376,11 +1378,11 @@
     46 00:E5A5: 50 50 50 50   .DB $50,$50,$50,$50,$FC,$00,$00,$00 ; $D2
        00:E5A9: FC 00 00 00 
     47 00:E5AD: 10 10 10 10   .DB $10,$10,$10,$10,$FC,$00,$FC,$00 ; $D1
+  Sat Jan 22 2022 11:43                                                                                                Page 24
+
+
        00:E5B1: FC 00 FC 00 
     48 00:E5B5: 00 00 00 00   .DB $00,$00,$00,$00,$FC,$50,$50,$50 ; $D0
-  Sun Nov 21 2021 15:13                                                                                                Page 24
-
-
        00:E5B9: FC 50 50 50 
     49 00:E5BD: 00 00 00 00   .DB $00,$00,$00,$00,$FC,$00,$FC,$10 ; $CF
        00:E5C1: FC 00 FC 10 
@@ -1436,11 +1438,11 @@
        00:E689: D0 50 50 50 
     75 00:E68D: 10 10 10 10   .DB $10,$10,$10,$10,$F0,$10,$F0,$10 ; $B5
        00:E691: F0 10 F0 10 
+  Sat Jan 22 2022 11:43                                                                                                Page 25
+
+
     76 00:E695: 10 10 10 10   .DB $10,$10,$10,$10,$F0,$10,$10,$10 ; $B4
        00:E699: F0 10 10 10 
-  Sun Nov 21 2021 15:13                                                                                                Page 25
-
-
     77 00:E69D: 10 10 10 10   .DB $10,$10,$10,$10,$10,$10,$10,$10 ; $B3
        00:E6A1: 10 10 10 10 
     78 00:E6A5: FC 54 FC A8   .DB $FC,$54,$FC,$A8,$FC,$54,$FC,$A8 ; $B2
@@ -1496,11 +1498,11 @@
    103 00:E76D: 00 00 00 00   .DB $00,$00,$00,$00,$04,$0C,$1C,$3C ; $99
        00:E771: 04 0C 1C 3C 
    104 00:E775: 00 00 00 00   .DB $00,$00,$00,$00,$80,$C0,$E0,$F0 ; $98
+  Sat Jan 22 2022 11:43                                                                                                Page 26
+
+
        00:E779: 80 C0 E0 F0 
    105 00:E77D: F0 E0 C0 80   .DB $F0,$E0,$C0,$80,$00,$00,$00,$00 ; $97
-  Sun Nov 21 2021 15:13                                                                                                Page 26
-
-
        00:E781: 00 00 00 00 
    106 00:E785: 3C 1C 0C 04   .DB $3C,$1C,$0C,$04,$00,$00,$00,$00 ; $96
        00:E789: 00 00 00 00 
@@ -1556,11 +1558,11 @@
        00:E851: 0C 08 08 30 
    132 00:E855: 00 10 10 10   .DB $00,$10,$10,$10,$00,$10,$10,$10 ; $7C
        00:E859: 00 10 10 10 
+  Sat Jan 22 2022 11:43                                                                                                Page 27
+
+
    133 00:E85D: 00 18 20 20   .DB $00,$18,$20,$20,$60,$20,$20,$18 ; $7B
        00:E861: 60 20 20 18 
-  Sun Nov 21 2021 15:13                                                                                                Page 27
-
-
    134 00:E865: 00 78 40 30   .DB $00,$78,$40,$30,$08,$78,$00,$00 ; $7A
        00:E869: 08 78 00 00 
    135 00:E86D: 60 10 38 48   .DB $60,$10,$38,$48,$48,$48,$00,$00 ; $79
@@ -1616,11 +1618,11 @@
    160 00:E935: 00 00 00 00   .DB $00,$00,$00,$00,$00,$10,$30,$30 ; $60
        00:E939: 00 10 30 30 
    161 00:E93D: FC 00 00 00   .DB $FC,$00,$00,$00,$00,$00,$00,$00 ; $5F
+  Sat Jan 22 2022 11:43                                                                                                Page 28
+
+
        00:E941: 00 00 00 00 
    162 00:E945: 00 00 00 00   .DB $00,$00,$00,$00,$00,$44,$28,$10 ; $5E
-  Sun Nov 21 2021 15:13                                                                                                Page 28
-
-
        00:E949: 00 44 28 10 
    163 00:E94D: 00 38 08 08   .DB $00,$38,$08,$08,$08,$08,$08,$38 ; $5D
        00:E951: 08 08 08 38 
@@ -1676,11 +1678,11 @@
        00:EA19: 44 44 44 78 
    189 00:EA1D: 00 38 44 40   .DB $00,$38,$44,$40,$40,$40,$44,$38 ; $43
        00:EA21: 40 40 44 38 
+  Sat Jan 22 2022 11:43                                                                                                Page 29
+
+
    190 00:EA25: 00 78 44 44   .DB $00,$78,$44,$44,$78,$44,$44,$78 ; $42
        00:EA29: 78 44 44 78 
-  Sun Nov 21 2021 15:13                                                                                                Page 29
-
-
    191 00:EA2D: 00 44 44 7C   .DB $00,$44,$44,$7C,$44,$44,$44,$38 ; $41
        00:EA31: 44 44 44 38 
    192 00:EA35: 00 38 40 5C   .DB $00,$38,$40,$5C,$54,$5C,$44,$38 ; $40
@@ -1736,11 +1738,11 @@
    217 00:EAFD: 00 00 00 00   .DB $00,$00,$00,$00,$00,$20,$30,$30 ; $27
        00:EB01: 00 20 30 30 
    218 00:EB05: 00 34 48 54   .DB $00,$34,$48,$54,$20,$50,$50,$20 ; $26
+  Sat Jan 22 2022 11:43                                                                                                Page 30
+
+
        00:EB09: 20 50 50 20 
    219 00:EB0D: 00 4C 4C 20   .DB $00,$4C,$4C,$20,$10,$08,$64,$64 ; $25
-  Sun Nov 21 2021 15:13                                                                                                Page 30
-
-
        00:EB11: 10 08 64 64 
    220 00:EB15: 00 10 70 08   .DB $00,$10,$70,$08,$30,$40,$38,$20 ; $24
        00:EB19: 30 40 38 20 
@@ -1796,11 +1798,11 @@
        00:EBE1: 34 0C 1C 00 
    246 00:EBE5: FC FC 84 B4   .DB $FC,$FC,$84,$B4,$B4,$84,$FC,$FC ; $0A
        00:EBE9: B4 84 FC FC 
+  Sat Jan 22 2022 11:43                                                                                                Page 31
+
+
    247 00:EBED: 00 00 78 48   .DB $00,$00,$78,$48,$48,$78,$00,$00 ; $09
        00:EBF1: 48 78 00 00 
-  Sun Nov 21 2021 15:13                                                                                                Page 31
-
-
    248 00:EBF5: FC FC FC CC   .DB $FC,$FC,$FC,$CC,$CC,$FC,$FC,$FC ; $08
        00:EBF9: CC FC FC FC 
    249 00:EBFD: 00 00 00 30   .DB $00,$00,$00,$30,$30,$00,$00,$00 ; $07
@@ -1856,13 +1858,13 @@
    672                            LONGA Off              	;
    673                            LONGI Off              	;
    674 00:EC51: DA               phx
+  Sat Jan 22 2022 11:43                                                                                                Page 32
+
+
    675 00:EC52: 5A               phy
    676                        
-  Sun Nov 21 2021 15:13                                                                                                Page 32
-
-
    677                        GetKey_Loop:
-   678 00:EC53: 20 99 EE         jsr kbdDelay16ms
+   678 00:EC53: 20 99 EE         jsr kbdDelay
    679 00:EC56: 20 80 EC         jsr ScanKeyboard
    680 00:EC59: C9 FF            cmp #$FF
    681 00:EC5B: F0 F6            beq GetKey_Loop
@@ -1916,11 +1918,11 @@
    727 00:EC9E: 8D 20 FE         sta	via2regb	; write value
    728                        innerScanLoop:
    729 00:ECA1: AD 21 FE         lda	via2rega	; read value
+  Sat Jan 22 2022 11:43                                                                                                Page 33
+
+
    730 00:ECA4: A2 00            ldx #$00
    731 00:ECA6: C9 FF            cmp #$FF        ;NO KEY PRESSED
-  Sun Nov 21 2021 15:13                                                                                                Page 33
-
-
    732 00:ECA8: F0 27            BEQ exitInnerScanLoop
    733 00:ECAA: C9 FE            cmp #$FE        ; COL 1 key Pressed
    734 00:ECAC: F0 2D            beq keyFound
@@ -1976,11 +1978,11 @@
    784                        
    785                        ;_________________________________________________________________________________________________
                     __
+  Sat Jan 22 2022 11:43                                                                                                Page 34
+
+
    786                        ; Check for Modifier keys (Shift, Control, Graph/Alt)
    787                        ; Requires Scancode in A
-  Sun Nov 21 2021 15:13                                                                                                Page 34
-
-
    788                        ; Returns modified Scancode in A
    789                        ;
    790                        ;_________________________________________________________________________________________________
@@ -2036,11 +2038,11 @@
    839                        ;_________________________________________________________________________________________________
                     __
    840                        ; Decode Keyboard
+  Sat Jan 22 2022 11:43                                                                                                Page 35
+
+
    841                        ;
    842                        ; Scancode in A
-  Sun Nov 21 2021 15:13                                                                                                Page 35
-
-
    843                        ; Returns Decoded Ascii in A
    844                        ;
    845                        ;_________________________________________________________________________________________________
@@ -2096,11 +2098,11 @@
    894 00:ED86: FA               plx
    895 00:ED87: 28               plp
    896 00:ED88: 60               rts
+  Sat Jan 22 2022 11:43                                                                                                Page 36
+
+
    897                        is_GraphLock:
    898                        ; check for toggle and set LEDs
-  Sun Nov 21 2021 15:13                                                                                                Page 36
-
-
    899 00:ED89: AD 32 03         lda LEDS
    900 00:ED8C: 29 20            AND #$20
    901 00:ED8E: C9 00            cmp #$00
@@ -2156,11 +2158,11 @@
    934 00:EE31: 20 1C 1D 1E      .DB     32,28,29,30,31,01,02,04         ; 136
        00:EE35: 1F 01 02 04 
    935                        
+  Sat Jan 22 2022 11:43                                                                                                Page 37
+
+
    936 00:EE39: 30 31 32 33      .DB     '0','1','2','3','4','5','6','7' ; 144 ; Control
        00:EE3D: 34 35 36 37 
-  Sun Nov 21 2021 15:13                                                                                                Page 37
-
-
    937 00:EE41: 38 39 EA E1      .DB     '8','9',234,225,224,248,249,000 ; 152
        00:EE45: E0 F8 F9 00 
    938 00:EE49: FA FB FE B0      .DB     250,251,254,176,177,00,01,02    ; 160
@@ -2190,37 +2192,37 @@
    952                        
    953                        ;***********************************************************************************;
    954                        ;
-   955                        ; 16ms delay
-   956                        kbdDelay16ms:
+   955                        ;  delay
+   956                        kbdDelay:
    957 00:EE99: 08           	php
    958 00:EE9A: E2 30            	SEP #$30 				; NEED 8 bit ACCUMULATOR & INDEX
    959                            	LONGA Off              	;
    960                            	LONGI Off              	;
    961 00:EE9C: 48           	pha
    962 00:EE9D: DA           	phx
-   963 00:EE9E: A2 10        	ldx 	#16
+   963 00:EE9E: A2 20        	ldx 	#KBD_DELAY
    964 00:EEA0: A9 40        	LDA	#$40			; set for 1024 cycles (MHZ)
    965 00:EEA2: 8D 29 FE     	STA	via2t2ch		; set VIA 2 T2C_h
-   966                        kbdDelay16ms_a:
+   966                        kbdDelay_a:
    967 00:EEA5: AD 2D FE     	LDA	via2ifr		; get VIA 2 IFR
    968 00:EEA8: 29 20        	AND	#$20			; mask T2 interrupt
-   969 00:EEAA: F0 F9        	BEQ	kbdDelay16ms_a		; loop until T2 interrupt
+   969 00:EEAA: F0 F9        	BEQ	kbdDelay_a		; loop until T2 interrupt
    970 00:EEAC: CA           	dex
-   971 00:EEAD: D0 F6        	bne 	kbdDelay16ms_a
+   971 00:EEAD: D0 F6        	bne 	kbdDelay_a
    972 00:EEAF: FA           	plx
    973 00:EEB0: 68           	pla
    974 00:EEB1: 28           	plp
    975 00:EEB2: 60           	RTS
    976                        ;________________________________________________________________________________________
-   352                        		INCLUDE 'IEC.ASM'
+   353                        		INCLUDE 'IEC.ASM'
      1                        ;__IEC____________________________________________________________________________________________
                     _
      2                        ;
+  Sat Jan 22 2022 11:43                                                                                                Page 38
+
+
      3                        ;	IEC SERIAL DRIVER
      4                        ;   ORIGINALLY FROM COMMODORE 64 KERNAL
-  Sun Nov 21 2021 15:13                                                                                                Page 38
-
-
      5                        ;	CONVERTED FOR 65816 BY: DAN WERNER -- 4/6/2021
      6                        ;
      7                        ;_________________________________________________________________________________________________
@@ -2276,11 +2278,11 @@
     56                        
     57                        ;***********************************************************************************;
     58                        ;
+  Sat Jan 22 2022 11:43                                                                                                Page 39
+
+
     59                        ; command devices on the serial bus to LISTEN
     60                        
-  Sun Nov 21 2021 15:13                                                                                                Page 39
-
-
     61                        ; this routine will command a device on the serial bus to receive data. The
     62                        ; accumulator must be loaded with a device number between 4 and 31 before calling
     63                        ; this routine. LISTEN convert this to a listen address then transmit this data as
@@ -2336,11 +2338,11 @@
    113 00:EF03: 20 B3 EE     	JSR	LAB_E4A0		; set serial data out high
    114 00:EF06: 20 77 F0     	JSR	LAB_EF96		; 1ms delay
    115                        
+  Sat Jan 22 2022 11:43                                                                                                Page 40
+
+
    116                        ;***********************************************************************************;
    117                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 40
-
-
    118                        ; Tx byte on serial bus
    119                        
    120                        LAB_EE49
@@ -2396,11 +2398,11 @@
    170                        
    171 00:EF3D: 4A           	LSR				; serial clock to carry
    172 00:EF3E: 4A           	LSR				; serial data to carry
+  Sat Jan 22 2022 11:43                                                                                                Page 41
+
+
    173 00:EF3F: 90 43        	BCC	LAB_EEB7		; if data low do timeout on serial bus
    174 00:EF41: 20 79 F3     	jsr IEC_DELAY
-  Sun Nov 21 2021 15:13                                                                                                Page 41
-
-
    175 00:EF44: 6E 13 03     	ROR	IECDC		; rotate transmit byte
    176 00:EF47: B0 05        	BCS	LAB_EE88		; branch if bit = 1
    177                        
@@ -2456,11 +2458,11 @@
    227                        ; timeout on serial bus
    228                        
    229                        LAB_EEB7
+  Sat Jan 22 2022 11:43                                                                                                Page 42
+
+
    230 00:EF84: A9 03        	LDA	#$03			; error $03, write timeout
    231                        LAB_EEB9
-  Sun Nov 21 2021 15:13                                                                                                Page 42
-
-
    232 00:EF86: 20 84 F0     	JSR	LAB_FE6A		; OR into serial status byte
    233 00:EF89: 58           	CLI				; enable interrupts
    234 00:EF8A: 18           	CLC				; clear for branch
@@ -2516,11 +2518,11 @@
    284                        ;
    285                        ; wait for bus end after send
    286                        
+  Sat Jan 22 2022 11:43                                                                                                Page 43
+
+
    287                        LAB_EED3
    288 00:EFA9: 78           	SEI				; disable interrupts
-  Sun Nov 21 2021 15:13                                                                                                Page 43
-
-
    289 00:EFAA: 20 BC EE     	JSR	LAB_E4A9		; set serial data out low
    290 00:EFAD: 20 93 EF     	JSR	LAB_EEC5		; set serial ATN high
    291 00:EFB0: 20 65 F0     	JSR	LAB_EF84		; set serial clock high
@@ -2576,11 +2578,11 @@
    341 00:EFCF: 20 6E F0     	JSR	LAB_EF8D		; set serial clock low
    342 00:EFD2: AD 1F FE     	LDA	via1ora		; get VIA 1 DRA, no handshake
    343 00:EFD5: 09 80        	ORA	#$80			; set serial ATN low
+  Sat Jan 22 2022 11:43                                                                                                Page 44
+
+
    344 00:EFD7: 8D 1F FE     	STA	via1ora		; set VIA 1 DRA, no handshake
    345                        
-  Sun Nov 21 2021 15:13                                                                                                Page 44
-
-
    346 00:EFDA: A9 5F        	LDA	#$5F			; set the UNTALK command
    347 00:EFDC: 2C           	.byte	$2C			; makes next line BIT LAB_3FA9
    348                        
@@ -2636,11 +2638,11 @@
    398                        LAB_EF19
    399 00:EFF2: 78           	SEI				; disable interrupts
    400 00:EFF3: A9 00        	LDA	#$00			; clear A
+  Sat Jan 22 2022 11:43                                                                                                Page 45
+
+
    401 00:EFF5: 8D 15 03     	STA	IECBTC		; clear serial bus bit count
    402 00:EFF8: 20 65 F0     	JSR	LAB_EF84		; set serial clock high
-  Sun Nov 21 2021 15:13                                                                                                Page 45
-
-
    403                        LAB_EF21
    404 00:EFFB: 20 C5 EE     	JSR	LAB_E4B2		; get serial clock status
    405 00:EFFE: 90 FB        	BCC	LAB_EF21		; loop while clock low
@@ -2696,11 +2698,11 @@
    455 00:F044: AD 1F FE     	LDA	via1ora		; get VIA 1 DRA, no handshake
    456 00:F047: CD 1F FE     	CMP	via1ora		; compare with self
    457 00:F04A: D0 F8        	BNE	LAB_EF66		; loop if changing
+  Sat Jan 22 2022 11:43                                                                                                Page 46
+
+
    458                        
    459 00:F04C: 4A           	LSR				; serial clock into carry
-  Sun Nov 21 2021 15:13                                                                                                Page 46
-
-
    460 00:F04D: B0 F5        	BCS	LAB_EF66		; loop while serial clock high
    461                        
    462 00:F04F: CE 15 03     	DEC	IECBTC		; decrement serial bus bit count
@@ -2756,11 +2758,11 @@
    512                        
    513                        ; OR into serial status byte
    514                        
+  Sat Jan 22 2022 11:43                                                                                                Page 47
+
+
    515                        LAB_FE6A
    516 00:F084: 0D 17 03     	ORA	IECSTW		; OR with serial status byte
-  Sun Nov 21 2021 15:13                                                                                                Page 47
-
-
    517 00:F087: 8D 17 03     	STA	IECSTW		; save serial status byte
    518 00:F08A: 60           	RTS
    519                        
@@ -2816,11 +2818,11 @@
    568 00:F0CA: 8D 17 03     	STA	IECSTW		; set serial status byte
    569 00:F0CD: 20 92 F3     	JSR	LAB_FFE1		; scan stop key, return Zb = 1 = [STOP]
    570 00:F0D0: D0 03        	BNE	LAB_F598		; branch if not [STOP]
+  Sat Jan 22 2022 11:43                                                                                                Page 48
+
+
    571 00:F0D2: 4C 65 F1     	JMP	LAB_F6CB		; else close the serial bus device and flag stop
    572                        
-  Sun Nov 21 2021 15:13                                                                                                Page 48
-
-
    573                        LAB_F598
    574 00:F0D5: 20 F2 EF     	JSR	LAB_EF19		; input a byte from the serial bus
    575 00:F0D8: AA           	TAX				; copy byte
@@ -2876,11 +2878,11 @@
    621                        ; LOADBANK must also be specified with the appropriate bank number.
    622                        
    623                        ; Before this routine can be called,
+  Sat Jan 22 2022 11:43                                                                                                Page 49
+
+
    624                        ;		the SETLFS
    625                        ;		LAB_FFBA(set logical, first and second addresses)
-  Sun Nov 21 2021 15:13                                                                                                Page 49
-
-
    626                        ;		SETNAM
    627                        ;		LAB_FFBD(clear filename)
    628                        ; 	routines must be called.
@@ -2936,11 +2938,11 @@
 +  675 00:F15B: E2 10        		SEP #$10 		; 8 bit Index registers 
 +  675                        		LONGI OFF
    676                        
+  Sat Jan 22 2022 11:43                                                                                                Page 50
+
+
    677 00:F15D: 20 BA EF     	JSR	LAB_EEE4		; output a byte to the serial bus
    678 00:F160: 20 92 F3     	JSR	LAB_FFE1		; scan stop key
-  Sun Nov 21 2021 15:13                                                                                                Page 50
-
-
    679 00:F163: D0 07        	BNE	LAB_F6D2		; if stop not pressed go increment pointer and loop for next
    680                        
    681                        					; else ..
@@ -2996,11 +2998,11 @@
    731                        LAB_F787
    732 00:F197: A9 04        	LDA	#$04			; file not found
    733 00:F199: 2C           	.byte	$2C			; makes next line BIT LAB_05A9
+  Sat Jan 22 2022 11:43                                                                                                Page 51
+
+
    734                        LAB_F78A
    735 00:F19A: A9 05        	LDA	#$05			; device not present
-  Sun Nov 21 2021 15:13                                                                                                Page 51
-
-
    736 00:F19C: 2C           	.byte	$2C			; makes next line BIT LAB_06A9
    737                        LAB_F78D
    738 00:F19D: A9 06        	LDA	#$06			; not input file
@@ -3056,11 +3058,11 @@
    788 00:F1D0: AD 1C 03     	LDA	IECDEVN		; get device number
    789 00:F1D3: 20 D2 EE     	JSR	LAB_EE17		; command devices on the serial bus to LISTEN
    790                        
+  Sat Jan 22 2022 11:43                                                                                                Page 52
+
+
    791 00:F1D6: AD 19 03     	LDA	IECSECAD		; get the secondary address
    792 00:F1D9: 09 F0        	ORA	#$F0			; OR with the OPEN command
-  Sun Nov 21 2021 15:13                                                                                                Page 52
-
-
    793 00:F1DB: 20 8D EF     	JSR	LAB_EEC0		; send secondary address after LISTEN
    794 00:F1DE: AD 17 03     	LDA	IECSTW			; get serial status byte
    795 00:F1E1: 10 05        	BPL	LAB_F4B2		; branch if device present
@@ -3116,11 +3118,11 @@
    835 00:F213: AD 1B 03     	LDA	IECBUFFH		; get load address high byte
    836 00:F216: 8D 23 03     	STA	LOADBUFH		; save program start address high byte
    837 00:F219: AD 1A 03     	LDA	IECBUFFL		; get load address low byte
+  Sat Jan 22 2022 11:43                                                                                                Page 53
+
+
    838 00:F21C: 8D 22 03     	STA	LOADBUFL		; save program start address low byte
    839                        
-  Sun Nov 21 2021 15:13                                                                                                Page 53
-
-
    840                        LAB_E4CC
    841 00:F21F: 4C F4 F2     	JMP	LAB_F66A		; display "LOADING" or "VERIFYING" and return
    842                        
@@ -3176,11 +3178,11 @@
    892                        
    893 00:F250: EE 1B 03     	INC	IECBUFFH		; increment buffer address high byte
    894                        LAB_FD21
+  Sat Jan 22 2022 11:43                                                                                                Page 54
+
+
    895 00:F253: 60           	RTS
    896                        
-  Sun Nov 21 2021 15:13                                                                                                Page 54
-
-
    897                        ;***********************************************************************************;
    898                        ;
    899                        ; close input and output channels
@@ -3236,11 +3238,11 @@
    936                        LAB_F1D7
    937 00:F29B: 0A 0D 46 4F  	.byte	$0A,$0D,"FOUND ",0
        00:F29F: 55 4E 44 20 
+  Sat Jan 22 2022 11:43                                                                                                Page 55
+
+
        00:F2A3: 00 
    938                        LAB_F1DE
-  Sun Nov 21 2021 15:13                                                                                                Page 55
-
-
    939 00:F2A4: 0A 0D 4F 4B  	.byte	$0A,$0D,"OK",0
        00:F2A8: 00 
    940                        
@@ -3296,11 +3298,11 @@
    990                        	Index16
 +  990 00:F2D7: C2 10        		REP #$10 		; 16 bit Index registers 
 +  990                        		LONGI ON
+  Sat Jan 22 2022 11:43                                                                                                Page 56
+
+
    991 00:F2D9: AE 20 03     	ldx IECFNPL
    992 00:F2DC: DA           	phx
-  Sun Nov 21 2021 15:13                                                                                                Page 56
-
-
    993                        LAB_F65F
    994                        	Index16
 +  994 00:F2DD: C2 10        		REP #$10 		; 16 bit Index registers 
@@ -3356,11 +3358,11 @@
   1037                        					; according to the 6522 data sheet
   1038                        LAB_F166
   1039 00:F313: AD 1E FE     	LDA	via1ier		; get VIA 1 IER
+  Sat Jan 22 2022 11:43                                                                                                Page 57
+
+
   1040 00:F316: 29 60        	AND	#$60			; mask 0xx0 0000, T1 and T2 interrupts
   1041 00:F318: D0 F9        	BNE	LAB_F166		; loop if T1 or T2 active
-  Sun Nov 21 2021 15:13                                                                                                Page 57
-
-
   1042                        
   1043 00:F31A: A9 10        	LDA	#$10			; disable CB1 interrupt
   1044 00:F31C: 8D 1E FE     	STA	via1ier		; set VIA 1 IER
@@ -3416,11 +3418,11 @@
   1094                        
   1095 00:F356: A2 40        	LDX	#$40			; assert CS on DS1302
   1096 00:F358: 8E 1F FE     	STX	via1ora			; set VIA 1 DRA, no handshake
+  Sat Jan 22 2022 11:43                                                                                                Page 58
+
+
   1097                        
   1098 00:F35B: 20 65 F0     	JSR	LAB_EF84		; set serial clock high
-  Sun Nov 21 2021 15:13                                                                                                Page 58
-
-
   1099 00:F35E: 20 6E F0     	JSR	LAB_EF8D		; set serial clock low
   1100                        
   1101                        
@@ -3476,11 +3478,11 @@
   1151 00:F392: 20 74 FF     	jsr	INPVEC
   1152 00:F395: C9 03        	cmp #$03
   1153 00:F397: 60           	rts
+  Sat Jan 22 2022 11:43                                                                                                Page 59
+
+
   1154                        
   1155                        
-  Sun Nov 21 2021 15:13                                                                                                Page 59
-
-
   1156                        ;***********************************************************************************;
   1157                        ;
   1158                        ; close a specified logical file
@@ -3536,11 +3538,11 @@
   1208                        ;
   1209                        ; open a logical file
   1210                        
+  Sat Jan 22 2022 11:43                                                                                                Page 60
+
+
   1211                        ; this routine is used to open a logical file. Once the logical file is set up it
   1212                        ; can be used for input/output operations. Most of the I/O KERNAL routines call on
-  Sun Nov 21 2021 15:13                                                                                                Page 60
-
-
   1213                        ; this routine to create the logical files to operate on. No arguments need to be
   1214                        ; set up to use this routine, but both the SETLFS, LAB_FFBA, and SETNAM, LAB_FFBD,
   1215                        ; KERNAL routines must be called before using this routine.
@@ -3596,11 +3598,11 @@
   1265                        ; when used with a device on the serial bus this routine will automatically send the
   1266                        ; listen address specified by the OPEN routine, LAB_FFC0, and any secondary address.
   1267                        
+  Sat Jan 22 2022 11:43                                                                                                Page 61
+
+
   1268                        ; possible errors are:
   1269                        ;
-  Sun Nov 21 2021 15:13                                                                                                Page 61
-
-
   1270                        ;	3 : file not open
   1271                        ;	5 : device not present
   1272                        ;	6 : file is not an input file
@@ -3656,11 +3658,11 @@
   1322                        ; possible errors are:
   1323                        ;
   1324                        ;	3 : file not open
+  Sat Jan 22 2022 11:43                                                                                                Page 62
+
+
   1325                        ;	5 : device not present
   1326                        ;	7 : file is not an output file
-  Sun Nov 21 2021 15:13                                                                                                Page 62
-
-
   1327                        
   1328                        LAB_F309
   1329 00:F432: 20 5F F4     	JSR	LAB_F3CF		; find file
@@ -3716,11 +3718,11 @@
   1379                        
   1380                        ;***********************************************************************************;
   1381                        ;
+  Sat Jan 22 2022 11:43                                                                                                Page 63
+
+
   1382                        ; set file details from table,X
   1383                        
-  Sun Nov 21 2021 15:13                                                                                                Page 63
-
-
   1384                        LAB_F3DF
   1385 00:F471: BD B0 03     	LDA	PTRLFT,X		; get logical file from logical file table
   1386 00:F474: 8D 26 03     	STA	IECLFN		; set logical file
@@ -3754,11 +3756,11 @@
   1414 00:F48C: 8D 28 03     	STA	IECODN		; set output device number to NULL
   1415 00:F48F: 8D 27 03     	STA	IECIDN		; set input device number to NULL
   1416 00:F492: 60           	RTS
-   353                        
    354                        
    355                        
-   356                        ;______________________________________________________________
-   357                                INCLUDE 'RTC.ASM'
+   356                        
+   357                        ;______________________________________________________________
+   358                                INCLUDE 'RTC.ASM'
      1                        
      2                        ;__RTC___________________________________________________________
      3                        ;
@@ -3776,11 +3778,11 @@
     15             00000020   mask_rd:    .EQU    $20     ; Enable data read from RTC
     16             00000010   mask_rst:   .EQU    $10     ; De-activate RTC reset line
     17                        
+  Sat Jan 22 2022 11:43                                                                                                Page 64
+
+
     18                        
     19                        
-  Sun Nov 21 2021 15:13                                                                                                Page 64
-
-
     20                        ;__RTC_WRITE____________________________________________________
     21                        ;
     22                        ; WRITE DATA TO RTC REGISTER OR NVRAM
@@ -3836,11 +3838,11 @@
     72 00:F4BE: 09 81            ORA #%10000001      ; set MSB to one for DS1302 COMMAND BYTE (READ)
     73 00:F4C0: 20 CD F4         JSR RTC_WR          ; write address to DS1302
     74 00:F4C3: 20 04 F5         JSR RTC_RD          ; read value from DS1302 (value is in reg C)
+  Sat Jan 22 2022 11:43                                                                                                Page 65
+
+
     75 00:F4C6: 20 37 F5         JSR RTC_RESET_ON    ; turn on RTC reset
     76 00:F4C9: 58               CLI
-  Sun Nov 21 2021 15:13                                                                                                Page 65
-
-
     77 00:F4CA: 28               PLP
     78 00:F4CB: FA               PLX
     79 00:F4CC: 60               RTS
@@ -3896,11 +3898,11 @@
    129                        ; function RTC_RD
    130                        ; output value in A
    131                        RTC_RD:
+  Sat Jan 22 2022 11:43                                                                                                Page 66
+
+
    132 00:F504: DA               PHX
    133 00:F505: 5A               PHY
-  Sun Nov 21 2021 15:13                                                                                                Page 66
-
-
    134 00:F506: 08               PHP
    135 00:F507: E2 30            SEP #$30            ; 8 bit REGISTERS
    136                            LONGA OFF
@@ -3956,11 +3958,11 @@
    186 00:F54B: 68               PLA
    187 00:F54C: 60               RTS
    188                        
+  Sat Jan 22 2022 11:43                                                                                                Page 67
+
+
    189                        RTC_GET_DTA:
    190 00:F54D: AD 13 FE         lda via1ddra
-  Sun Nov 21 2021 15:13                                                                                                Page 67
-
-
    191 00:F550: 29 DF            AND #%11011111
    192 00:F552: 8D 13 FE         STA via1ddra
    193 00:F555: AD 11 FE         lda via1rega
@@ -4016,11 +4018,11 @@
    243 00:F5A0: 48               PHA
    244 00:F5A1: 68               PLA
    245 00:F5A2: 48               PHA
+  Sat Jan 22 2022 11:43                                                                                                Page 68
+
+
    246 00:F5A3: 68               PLA
    247 00:F5A4: 48               PHA
-  Sun Nov 21 2021 15:13                                                                                                Page 68
-
-
    248 00:F5A5: 68               PLA
    249 00:F5A6: 48               PHA
    250 00:F5A7: 68               PLA
@@ -4033,140 +4035,140 @@
    257 00:F5AE: 48               PHA
    258 00:F5AF: 68               PLA
    259 00:F5B0: 60               RTS
-   358                        ;______________________________________________________________
-   359                        
+   359                        ;______________________________________________________________
    360                        
-   361 00:F5B1: 00 00 00     	.BYTE 00,00,00
-   362                        
+   361                        
+   362 00:F5B1: 00 00 00     	.BYTE 00,00,00
    363                        
-   364                        ; BIOS JUMP TABLE (NATIVE)
-   365                        		.ORG 	$FD00
-   366 00:FD00: 20 75 E0     LPRINTVEC	JSR	OUTCH
-   367 00:FD03: 6B           			RTL
-   368 00:FD04: 20 AC E0     LINPVEC		JSR	INCH
-   369 00:FD07: 6B           			RTL
-   370 00:FD08: 20 92 E0     LINPWVEC	JSR	INCHW
-   371 00:FD0B: 6B           			RTL
-   372 00:FD0C: 20 8E E2     LSetXYVEC	JSR SetXY
-   373 00:FD0F: 6B           			RTL
-   374 00:FD10: 20 57 E3     LCPYVVEC	JSR CopyVideoMem
-   375 00:FD13: 6B           			RTL
-   376 00:FD14: 20 FE E2     LSrlUpVEC 	JSR ScrollUp
-   377 00:FD17: 6B           			RTL
-   378                        LSetColorVEC:
-   379 00:FD18: 20 81 E2     			JSR SetColor
-   380 00:FD1B: 6B           			RTL
-   381 00:FD1C: 20 B8 E1     LCURSORVEC	JSR CURSOR
-   382 00:FD1F: 6B           			RTL
-   383                        LUNCURSORVEC:
-   384 00:FD20: 20 F5 E1     			JSR UNCURSOR
-   385 00:FD23: 6B           			RTL
-   386 00:FD24: 20 93 F4     LWRITERTC	JSR RTC_WRITE
-   387 00:FD27: 6B           			RTL
-   388 00:FD28: 20 B2 F4     LREADRTC	JSR RTC_READ
-   389 00:FD2B: 6B           			RTL
-   390 00:FD2C: 20 F2 EF     LIECIN		JSR LAB_EF19 ;. Read byte from serial bus. (Must call TALK and TALKSA beforehand
+   364                        
+   365                        ; BIOS JUMP TABLE (NATIVE)
+   366                        		.ORG 	$FD00
+   367 00:FD00: 20 75 E0     LPRINTVEC	JSR	OUTCH
+   368 00:FD03: 6B           			RTL
+   369 00:FD04: 20 AC E0     LINPVEC		JSR	INCH
+   370 00:FD07: 6B           			RTL
+   371 00:FD08: 20 92 E0     LINPWVEC	JSR	INCHW
+   372 00:FD0B: 6B           			RTL
+   373 00:FD0C: 20 8E E2     LSetXYVEC	JSR SetXY
+   374 00:FD0F: 6B           			RTL
+   375 00:FD10: 20 57 E3     LCPYVVEC	JSR CopyVideoMem
+   376 00:FD13: 6B           			RTL
+   377 00:FD14: 20 FE E2     LSrlUpVEC 	JSR ScrollUp
+   378 00:FD17: 6B           			RTL
+   379                        LSetColorVEC:
+   380 00:FD18: 20 81 E2     			JSR SetColor
+   381 00:FD1B: 6B           			RTL
+   382 00:FD1C: 20 B8 E1     LCURSORVEC	JSR CURSOR
+   383 00:FD1F: 6B           			RTL
+   384                        LUNCURSORVEC:
+   385 00:FD20: 20 F5 E1     			JSR UNCURSOR
+   386 00:FD23: 6B           			RTL
+   387 00:FD24: 20 93 F4     LWRITERTC	JSR RTC_WRITE
+   388 00:FD27: 6B           			RTL
+   389 00:FD28: 20 B2 F4     LREADRTC	JSR RTC_READ
+   390 00:FD2B: 6B           			RTL
+   391 00:FD2C: 20 F2 EF     LIECIN		JSR LAB_EF19 ;. Read byte from serial bus. (Must call TALK and TALKSA beforehand
                     s.)
-   391 00:FD2F: 6B           			RTL
-   392 00:FD30: 20 BA EF     LIECOUT		JSR LAB_EEE4 ;. Write byte to serial bus. (Must call LISTEN and LSTNSA beforehan
+   392 00:FD2F: 6B           			RTL
+   393 00:FD30: 20 BA EF     LIECOUT		JSR LAB_EEE4 ;. Write byte to serial bus. (Must call LISTEN and LSTNSA beforehan
                     ds.)
-   393 00:FD33: 6B           			RTL
-   394 00:FD34: 20 CF EF     LUNTALK		JSR LAB_EEF6 ;. Send UNTALK command to serial bus.
-   395 00:FD37: 6B           			RTL
-   396 00:FD38: 20 DD EF     LUNLSTN		JSR LAB_EF04 ;. Send UNLISTEN command to serial bus.
-   397 00:FD3B: 6B           			RTL
-   398 00:FD3C: 20 D2 EE     LLISTEN		JSR LAB_EE17 ;. Send LISTEN command to serial bus.
-   399 00:FD3F: 6B           			RTL
-   400 00:FD40: 20 CF EE     LTALK		JSR LAB_EE14 ;. Send TALK command to serial bus.
-  Sun Nov 21 2021 15:13                                                                                                Page 69
+   394 00:FD33: 6B           			RTL
+   395 00:FD34: 20 CF EF     LUNTALK		JSR LAB_EEF6 ;. Send UNTALK command to serial bus.
+   396 00:FD37: 6B           			RTL
+   397 00:FD38: 20 DD EF     LUNLSTN		JSR LAB_EF04 ;. Send UNLISTEN command to serial bus.
+   398 00:FD3B: 6B           			RTL
+   399 00:FD3C: 20 D2 EE     LLISTEN		JSR LAB_EE17 ;. Send LISTEN command to serial bus.
+  Sat Jan 22 2022 11:43                                                                                                Page 69
 
 
-   401 00:FD43: 6B           			RTL
-   402 00:FD44: 20 03 F3     LSETLFS		JSR LAB_FE50 ;. Set file parameters.
-   403 00:FD47: 6B           			RTL
-   404 00:FD48: 20 F9 F2     LSETNAM		JSR LAB_FE49 ;. Set file name parameters.
-   405 00:FD4B: 6B           			RTL
-   406 00:FD4C: 20 8B F0     LLOAD		JSR LOADTORAM ;. Load or verify file. (Must call SETLFS and SETNAM beforehands.)
-   407 00:FD4F: 6B           			RTL
-   408 00:FD50: 20 12 F1     LSAVE		JSR IECSAVERAM ;. Save file. (Must call SETLFS and SETNAM beforehands.)
-   409 00:FD53: 6B           			RTL
-   410 00:FD54: 20 21 F3     LIECINIT	JSR INITIEC	   ; INIT IEC
-   411 00:FD57: 6B           			RTL
-   412 00:FD58: 20 84 F4     LIECCLCH    JSR LAB_F3F3        ; close input and output channels
-   413 00:FD5B: 6B           			RTL
-   414 00:FD5C: 20 32 F4     LIECOUTC    JSR LAB_F309        ; open a channel for output
-   415 00:FD5F: 6B           			RTL
-   416 00:FD60: 20 04 F4     LIECINPC    JSR LAB_F2C7        ; open a channel for input
-   417 00:FD63: 6B           			RTL
-   418 00:FD64: 20 CB F3     LIECOPNLF   JSR LAB_F40A        ; open a logical file
-   419 00:FD67: 6B           			RTL
-   420 00:FD68: 20 98 F3     LIECCLSLF   JSR LAB_F34A        ; close a specified logical file
-   421 00:FD6B: 6B           			RTL
-   422 00:FD6C: 20 CE E3     LClearScrVec JSR ClearScreen     ; clear the 9918 Screen
-   423 00:FD6F: 6B           			RTL
-   424 00:FD70: 20 0E E4     LLOADFONTVec JSR LoadFont     ; LOAD THE FONT
-   425 00:FD73: 6B           			RTL
-   426                        
-   427                        ; BIOS JUMP TABLE (Emulation)
-   428                        		.ORG 	$FF71
-   429 00:FF71: 4C 75 E0     PRINTVEC	JMP	OUTCH
-   430 00:FF74: 4C AC E0     INPVEC		JMP	INCH
-   431 00:FF77: 4C 92 E0     INPWVEC		JMP	INCHW
-   432 00:FF7A: 4C 8E E2     SetXYVEC	JMP SetXY
-   433 00:FF7D: 4C 57 E3     CPYVVEC		JMP CopyVideoMem
-   434 00:FF80: 4C FE E2     SrlUpVEC 	JMP ScrollUp
-   435 00:FF83: 4C 81 E2     SetColorVEC JMP SetColor
-   436 00:FF86: 4C B8 E1     CURSORVEC	JMP CURSOR
-   437 00:FF89: 4C F5 E1     UNCURSORVEC	JMP UNCURSOR
-   438 00:FF8C: 4C 93 F4     WRITERTC	JMP RTC_WRITE
-   439 00:FF8F: 4C B2 F4     READRTC		JMP RTC_READ
-   440 00:FF92: 4C F2 EF     IECIN		JMP LAB_EF19 		; Read byte from serial bus. (Must call TALK and TALKSA 
+   400 00:FD3F: 6B           			RTL
+   401 00:FD40: 20 CF EE     LTALK		JSR LAB_EE14 ;. Send TALK command to serial bus.
+   402 00:FD43: 6B           			RTL
+   403 00:FD44: 20 03 F3     LSETLFS		JSR LAB_FE50 ;. Set file parameters.
+   404 00:FD47: 6B           			RTL
+   405 00:FD48: 20 F9 F2     LSETNAM		JSR LAB_FE49 ;. Set file name parameters.
+   406 00:FD4B: 6B           			RTL
+   407 00:FD4C: 20 8B F0     LLOAD		JSR LOADTORAM ;. Load or verify file. (Must call SETLFS and SETNAM beforehands.)
+   408 00:FD4F: 6B           			RTL
+   409 00:FD50: 20 12 F1     LSAVE		JSR IECSAVERAM ;. Save file. (Must call SETLFS and SETNAM beforehands.)
+   410 00:FD53: 6B           			RTL
+   411 00:FD54: 20 21 F3     LIECINIT	JSR INITIEC	   ; INIT IEC
+   412 00:FD57: 6B           			RTL
+   413 00:FD58: 20 84 F4     LIECCLCH    JSR LAB_F3F3        ; close input and output channels
+   414 00:FD5B: 6B           			RTL
+   415 00:FD5C: 20 32 F4     LIECOUTC    JSR LAB_F309        ; open a channel for output
+   416 00:FD5F: 6B           			RTL
+   417 00:FD60: 20 04 F4     LIECINPC    JSR LAB_F2C7        ; open a channel for input
+   418 00:FD63: 6B           			RTL
+   419 00:FD64: 20 CB F3     LIECOPNLF   JSR LAB_F40A        ; open a logical file
+   420 00:FD67: 6B           			RTL
+   421 00:FD68: 20 98 F3     LIECCLSLF   JSR LAB_F34A        ; close a specified logical file
+   422 00:FD6B: 6B           			RTL
+   423 00:FD6C: 20 CE E3     LClearScrVec JSR ClearScreen     ; clear the 9918 Screen
+   424 00:FD6F: 6B           			RTL
+   425 00:FD70: 20 0E E4     LLOADFONTVec JSR LoadFont     ; LOAD THE FONT
+   426 00:FD73: 6B           			RTL
+   427                        
+   428                        ; BIOS JUMP TABLE (Emulation)
+   429                        		.ORG 	$FF71
+   430 00:FF71: 4C 75 E0     PRINTVEC	JMP	OUTCH
+   431 00:FF74: 4C AC E0     INPVEC		JMP	INCH
+   432 00:FF77: 4C 92 E0     INPWVEC		JMP	INCHW
+   433 00:FF7A: 4C 8E E2     SetXYVEC	JMP SetXY
+   434 00:FF7D: 4C 57 E3     CPYVVEC		JMP CopyVideoMem
+   435 00:FF80: 4C FE E2     SrlUpVEC 	JMP ScrollUp
+   436 00:FF83: 4C 81 E2     SetColorVEC JMP SetColor
+   437 00:FF86: 4C B8 E1     CURSORVEC	JMP CURSOR
+   438 00:FF89: 4C F5 E1     UNCURSORVEC	JMP UNCURSOR
+   439 00:FF8C: 4C 93 F4     WRITERTC	JMP RTC_WRITE
+   440 00:FF8F: 4C B2 F4     READRTC		JMP RTC_READ
+   441 00:FF92: 4C F2 EF     IECIN		JMP LAB_EF19 		; Read byte from serial bus. (Must call TALK and TALKSA 
                     beforehands.)
-   441 00:FF95: 4C BA EF     IECOUT		JMP LAB_EEE4 		; Write byte to serial bus. (Must call LISTEN and LSTNSA
+   442 00:FF95: 4C BA EF     IECOUT		JMP LAB_EEE4 		; Write byte to serial bus. (Must call LISTEN and LSTNSA
                      beforehands.)
-   442 00:FF98: 4C CF EF     UNTALK		JMP LAB_EEF6 		; Send UNTALK command to serial bus.
-   443 00:FF9B: 4C DD EF     UNLSTN		JMP LAB_EF04 		; Send UNLISTEN command to serial bus.
-   444 00:FF9E: 4C D2 EE     LISTEN		JMP LAB_EE17 		; Send LISTEN command to serial bus.
-   445 00:FFA1: 4C CF EE     TALK		JMP LAB_EE14 		; Send TALK command to serial bus.
-   446 00:FFA4: 4C 03 F3     SETLFS		JMP LAB_FE50	 	; Set file parameters.
-   447 00:FFA7: 4C F9 F2     SETNAM		JMP LAB_FE49 		; Set file name parameters.
-   448 00:FFAA: 4C 8B F0     LOAD		JMP LOADTORAM 		; Load or verify file. (Must call SETLFS and SETNAM befo
+   443 00:FF98: 4C CF EF     UNTALK		JMP LAB_EEF6 		; Send UNTALK command to serial bus.
+   444 00:FF9B: 4C DD EF     UNLSTN		JMP LAB_EF04 		; Send UNLISTEN command to serial bus.
+   445 00:FF9E: 4C D2 EE     LISTEN		JMP LAB_EE17 		; Send LISTEN command to serial bus.
+   446 00:FFA1: 4C CF EE     TALK		JMP LAB_EE14 		; Send TALK command to serial bus.
+   447 00:FFA4: 4C 03 F3     SETLFS		JMP LAB_FE50	 	; Set file parameters.
+   448 00:FFA7: 4C F9 F2     SETNAM		JMP LAB_FE49 		; Set file name parameters.
+   449 00:FFAA: 4C 8B F0     LOAD		JMP LOADTORAM 		; Load or verify file. (Must call SETLFS and SETNAM befo
                     rehands.)
-   449 00:FFAD: 4C 12 F1     SAVE		JMP IECSAVERAM 		; Save file. (Must call SETLFS and SETNAM beforehands.)
-   450 00:FFB0: 4C 21 F3     IECINIT		JMP INITIEC	   		; INIT IEC
-   451 00:FFB3: 4C 84 F4     IECCLCH     JMP LAB_F3F3        ; close input and output channels
-   452 00:FFB6: 4C 32 F4     IECOUTC     JMP LAB_F309        ; open a channel for output
-   453 00:FFB9: 4C 04 F4     IECINPC     JMP LAB_F2C7        ; open a channel for input
-   454 00:FFBC: 4C CB F3     IECOPNLF    JMP LAB_F40A        ; open a logical file
-  Sun Nov 21 2021 15:13                                                                                                Page 70
+   450 00:FFAD: 4C 12 F1     SAVE		JMP IECSAVERAM 		; Save file. (Must call SETLFS and SETNAM beforehands.)
+   451 00:FFB0: 4C 21 F3     IECINIT		JMP INITIEC	   		; INIT IEC
+   452 00:FFB3: 4C 84 F4     IECCLCH     JMP LAB_F3F3        ; close input and output channels
+   453 00:FFB6: 4C 32 F4     IECOUTC     JMP LAB_F309        ; open a channel for output
+  Sat Jan 22 2022 11:43                                                                                                Page 70
 
 
-   455 00:FFBF: 4C 98 F3     IECCLSLF    JMP LAB_F34A        ; close a specified logical file
-   456 00:FFC2: 4C CE E3     ClearScrVec JMP ClearScreen     ; clear the 9918 Screen
-   457 00:FFC5: 4C 0E E4     LOADFONTVec JMP LoadFont 	; LOAD THE FONT
-   458                        
+   454 00:FFB9: 4C 04 F4     IECINPC     JMP LAB_F2C7        ; open a channel for input
+   455 00:FFBC: 4C CB F3     IECOPNLF    JMP LAB_F40A        ; open a logical file
+   456 00:FFBF: 4C 98 F3     IECCLSLF    JMP LAB_F34A        ; close a specified logical file
+   457 00:FFC2: 4C CE E3     ClearScrVec JMP ClearScreen     ; clear the 9918 Screen
+   458 00:FFC5: 4C 0E E4     LOADFONTVec JMP LoadFont 	; LOAD THE FONT
    459                        
-   460                        ; 65c816 Native Vectors
-   461                        		.ORG     $FFE4
-   462 00:FFE4: 3A E0        COPVECTOR	.DW   RCOPVECTOR
-   463 00:FFE6: 3D E0        BRKVECTOR	.DW   RBRKVECTOR
-   464 00:FFE8: 40 E0        ABTVECTOR	.DW   RABTVECTOR
-   465 00:FFEA: 43 E0        NMIVECTOR   .DW   RNMIVECTOR
-   466 00:FFEC: 00 00        resv1		.DW   $0000		;
-   467 00:FFEE: 46 E0        IRQVECTOR 	.DW   RIRQVECTOR	; ROM VECTOR FOR IRQ
-   468                        
+   460                        
+   461                        ; 65c816 Native Vectors
+   462                        		.ORG     $FFE4
+   463 00:FFE4: 3A E0        COPVECTOR	.DW   RCOPVECTOR
+   464 00:FFE6: 3D E0        BRKVECTOR	.DW   RBRKVECTOR
+   465 00:FFE8: 40 E0        ABTVECTOR	.DW   RABTVECTOR
+   466 00:FFEA: 43 E0        NMIVECTOR   .DW   RNMIVECTOR
+   467 00:FFEC: 00 00        resv1		.DW   $0000		;
+   468 00:FFEE: 46 E0        IRQVECTOR 	.DW   RIRQVECTOR	; ROM VECTOR FOR IRQ
    469                        
-   470                        ; 6502 Emulation Vectors
-   471                        		.ORG     $FFF4
-   472 00:FFF4: 49 E0        ECOPVECTOR	.DW   RECOPVECTOR
-   473 00:FFF6: 00 00        resv2		.DW   $0000
-   474 00:FFF8: 4C E0        EABTVECTOR	.DW   REABTVECTOR
-   475 00:FFFA: 4F E0        ENMIVECTOR  .DW   RENMIVECTOR
-   476 00:FFFC: 00 E0        RSTVECTOR   .DW   COLD_START	;
-   477 00:FFFE: 52 E0        EINTVECTOR 	.DW   REINTVECTOR	; ROM VECTOR FOR IRQ
-   478                        
-   479                        	.END
+   470                        
+   471                        ; 6502 Emulation Vectors
+   472                        		.ORG     $FFF4
+   473 00:FFF4: 49 E0        ECOPVECTOR	.DW   RECOPVECTOR
+   474 00:FFF6: 00 00        resv2		.DW   $0000
+   475 00:FFF8: 4C E0        EABTVECTOR	.DW   REABTVECTOR
+   476 00:FFFA: 4F E0        ENMIVECTOR  .DW   RENMIVECTOR
+   477 00:FFFC: 00 E0        RSTVECTOR   .DW   COLD_START	;
+   478 00:FFFE: 52 E0        EINTVECTOR 	.DW   REINTVECTOR	; ROM VECTOR FOR IRQ
+   479                        
+   480                        	.END
 
 
-      Lines assembled: 3622
+      Lines assembled: 3623
       Errors: 0

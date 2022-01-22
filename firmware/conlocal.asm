@@ -675,7 +675,7 @@ GetKey:
     phy
 
 GetKey_Loop:
-    jsr kbdDelay16ms
+    jsr kbdDelay
     jsr ScanKeyboard
     cmp #$FF
     beq GetKey_Loop
@@ -952,23 +952,23 @@ DecodeTable:
 
 ;***********************************************************************************;
 ;
-; 16ms delay
-kbdDelay16ms:
+;  delay
+kbdDelay:
 	php
     	SEP #$30 				; NEED 8 bit ACCUMULATOR & INDEX
     	LONGA Off              	;
     	LONGI Off              	;
 	pha
 	phx
-	ldx 	#16
+	ldx 	#KBD_DELAY
 	LDA	#$40			; set for 1024 cycles (MHZ)
 	STA	via2t2ch		; set VIA 2 T2C_h
-kbdDelay16ms_a:
+kbdDelay_a:
 	LDA	via2ifr		; get VIA 2 IFR
 	AND	#$20			; mask T2 interrupt
-	BEQ	kbdDelay16ms_a		; loop until T2 interrupt
+	BEQ	kbdDelay_a		; loop until T2 interrupt
 	dex
-	bne 	kbdDelay16ms_a
+	bne 	kbdDelay_a
 	plx
 	pla
 	plp

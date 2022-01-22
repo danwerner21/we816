@@ -141,6 +141,7 @@ LINEFLGS        .EQU $03D0          		; 24 BYTES OF LINE POINTERS (3D0 - 3E9 , o
 TRUE		.EQU    1
 FALSE		.EQU 	0
 
+KBD_DELAY 	.EQU 	32			; keyboard delay in MS.   Set higher if keys bounce, set lower if keyboard feels slow
 
 	INCLUDE 'MACROS.ASM'
 
