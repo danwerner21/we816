@@ -1,0 +1,134 @@
+
+(rules PCB we816
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 93542)
+    (layer_rule Component
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 3.5)
+    )
+    (layer_rule Copper
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.4)
+    )
+  )
+  (rule
+    (width 203.2)
+    (clear 254.2)
+    (clear 101.6 (type smd_to_turn_gap))
+    (clear 63.6 (type smd_smd))
+  )
+  (padstack "Via[0-1]_889:584.2_um"
+    (shape
+      (circle Component 889.0 0.0 0.0)
+    )
+    (shape
+      (circle Copper 889.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_889:584.2_um" "Via[0-1]_889:584.2_um" default
+  )
+  (via 
+    "Via[0-1]_889:584.2_um-kicad_default" "Via[0-1]_889:584.2_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_889:584.2_um-Power" "Via[0-1]_889:584.2_um" Power
+  )
+  (via_rule
+    default "Via[0-1]_889:584.2_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_889:584.2_um-kicad_default"
+  )
+  (via_rule
+    Power "Via[0-1]_889:584.2_um-Power"
+  )
+  (class default
+    "Net-(BT1-Pad1)" "Net-(C34-Pad1)" "Net-(C35-Pad1)" "Net-(C36-Pad1)" "Net-(C38-Pad1)" "Net-(K1-Pad2)" "Net-(K2-Pad2)" "Net-(C39-Pad1)"
+    "Net-(C39-Pad2)" "Net-(C40-Pad1)" "Net-(C40-Pad2)" "Net-(C41-Pad2)" "Net-(C43-Pad1)" "Net-(C44-Pad2)" "Net-(C45-Pad1)" /Video/COMVID
+    "Net-(C46-Pad2)" "Net-(C47-Pad2)" "Net-(C50-Pad1)" "B_INT" "V_INT" "VIA2_INT" "VIA1_INT" "Net-(D1-Pad2)"
+    "P1_B" "P1_A" "P1_R" "P1_L" "P1_D" "P1_U" "P2_B" "P2_A"
+    "P2_R" "P2_L" "P2_D" "P2_U" "Net-(J4-Pad3)" SERSRQ SERCLKIN SERDATAIN
+    COLUMN1 COLUMN0 "USERA_2" "USERA_3" "USERA_4" "USERA_5" "USERA_6" "USERCA_2"
+    "USERB_7" "USERB_6" "USERB_5" "USERB_4" "USERB_3" "USERB_2" "USERB_1" "USERB_0"
+    "LED_1" "LED_2" "Net-(P2-Pad2)" "CLK_CPU" "CLK_UART" CTS TX RTS
+    RX "Net-(J6-Pad1)" "unconnected-(J9-Pad5)" EMU "COMP_VID" ABORT NMI INT
+    "B_BUSRQ" "B_NMI" "B_WAIT" "VRAM_BANK" "UART_INT" RW D2 D1
+    WR D0 A13 A0 A8 A1 A9 A2
+    A11 A3 RD A4 A10 A5 "CS_RAM" A6
+    D7 A7 D6 A12 D5 A14 D4 D3
+    RESET VDA BUSRQ AD0 AD1 AD2 AD3 AD4
+    AD5 AD6 VPA AD7 A15 ML WAIT VP
+    "CS_ROM" A23 A19 A22 A18 A21 A17 A20
+    A16 "CTS_TTL" "CS_UART" "RTS_TTL" "SOUT_TTL" "SIN_TTL" "CS_VDP" "CS_VIA1"
+    "CS_VIA2" IO BUS BUSAK "DATA_DIR" "CLK_AUDIO" VDPRD VDPWR
+    VD0 VD1 VRW VD2 VAD0 VD3 VAD1 VD4
+    VAD2 VD5 VAD3 VD6 VAD4 VD7 VAD5 VAD6
+    VAD7 VCAS VRAS VROW VCOL VRD "unconnected-(J10-Pad5)" "unconnected-(P1-Pad1)"
+    SERATNOUT SERCLKOUT SERDATAOUT "KB_GRAPH_LED" "KB_CAPS_LED" ROWD ROWC ROWB
+    ROWA COLUMN7 COLUMN6 COLUMN5 COLUMN4 COLUMN3 COLUMN2 "unconnected-(P1-Pad2)"
+    "unconnected-(P1-Pad7)" "B_A16" "B_A17" "B_A18" "B_A19" "B_A20" "B_A21" "B_A22"
+    "B_A23" "B_CLK_CPU" "B_A0" "B_A1" "B_A2" "B_A3" "B_A4" "B_A5"
+    "B_A6" "B_A7" "B_A8" "B_A9" "B_A10" "B_A11" "B_A12" "B_A13"
+    "B_A14" "B_A15" "B_D7" "B_D6" "B_D5" "B_D4" "B_D3" "B_D2"
+    "B_D1" "B_D0" "LED_ANODE" "Net-(K3-Pad2)" URESET "unconnected-(P1-Pad8)" "N_EMU" "B_RW"
+    "O1_ROM" "unconnected-(P1-Pad10)" "Net-(P2-Pad1)" "Net-(P2-Pad3)" "Net-(P4-Pad1)" "Net-(Q1-Pad2)" "unconnected-(RR1-Pad2)" "unconnected-(RR2-Pad5)"
+    "unconnected-(RR2-Pad6)" "unconnected-(RR4-Pad6)" "Net-(U1-Pad3)" "unconnected-(U1-Pad4)" "unconnected-(U1-Pad5)" "unconnected-(U1-Pad6)" "unconnected-(U1-Pad8)" "unconnected-(U1-Pad9)"
+    "unconnected-(U1-Pad10)" "unconnected-(U1-Pad11)" "unconnected-(U1-Pad12)" "unconnected-(U1-Pad13)" "unconnected-(U2-Pad8)" "unconnected-(U2-Pad9)" "unconnected-(U2-Pad10)" "unconnected-(U2-Pad11)"
+    "unconnected-(U2-Pad12)" "unconnected-(U2-Pad13)" "unconnected-(U3-Pad1)" "unconnected-(U3-Pad2)" "Net-(U3-Pad9)" "unconnected-(U3-Pad10)" "unconnected-(U3-Pad11)" "Net-(U3-Pad13)"
+    "Net-(U30-Pad11)" "unconnected-(U4-Pad10)" "unconnected-(U4-Pad11)" "unconnected-(U5-Pad1)" "unconnected-(U5-Pad2)" "Net-(U5-Pad11)" "Net-(U5-Pad10)" "unconnected-(U6-Pad35)"
+    "unconnected-(U6-Pad37)" "unconnected-(U8-Pad12)" "Net-(U10-Pad4)" "Net-(U10-Pad5)" "Net-(U10-Pad6)" "Net-(U10-Pad7)" "Net-(U10-Pad8)" "Net-(U10-Pad9)"
+    "Net-(U10-Pad10)" "unconnected-(U9-Pad12)" "Net-(U10-Pad26)" "Net-(U10-Pad2)" "Net-(U10-Pad23)" "Net-(U10-Pad21)" "Net-(U10-Pad24)" "Net-(U10-Pad25)"
+    "Net-(U10-Pad3)" "unconnected-(U12-Pad11)" "unconnected-(U12-Pad12)" "unconnected-(U12-Pad13)" "unconnected-(U12-Pad16)" "unconnected-(U12-Pad18)" "unconnected-(U14-Pad9)" "unconnected-(U14-Pad11)"
+    "unconnected-(U14-Pad12)" "unconnected-(U14-Pad13)" "unconnected-(U14-Pad18)" "unconnected-(U14-Pad19)" "Net-(U15-Pad15)" "unconnected-(U15-Pad17)" "unconnected-(U15-Pad23)" "unconnected-(U15-Pad24)"
+    "unconnected-(U15-Pad29)" "unconnected-(U15-Pad31)" "unconnected-(U15-Pad33)" "unconnected-(U15-Pad34)" "unconnected-(U15-Pad37)" "unconnected-(U15-Pad38)" "unconnected-(U15-Pad39)" "Net-(U16-Pad2)"
+    "Net-(U16-Pad3)" "unconnected-(U18-Pad18)" "unconnected-(U18-Pad19)" "unconnected-(U18-Pad40)" "unconnected-(U21-Pad4)" "unconnected-(U21-Pad8)" "unconnected-(U21-Pad9)" "unconnected-(U21-Pad11)"
+    "unconnected-(U21-Pad12)" "unconnected-(U21-Pad16)" "unconnected-(U25-Pad2)" "unconnected-(U25-Pad5)" "unconnected-(U25-Pad6)" "unconnected-(U25-Pad7)" "unconnected-(U25-Pad14)" "unconnected-(U25-Pad15)"
+    "unconnected-(U25-Pad26)" "unconnected-(U25-Pad39)" "unconnected-(U27-Pad38)" "unconnected-(U11-Pad4)" "unconnected-(U11-Pad5)" "unconnected-(U11-Pad6)" "unconnected-(U11-Pad11)" "unconnected-(U11-Pad12)"
+    "unconnected-(U11-Pad13)"
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 203.2)
+    )
+    (circuit 
+      (use_layer Component Copper)
+    )
+  )
+  (class "kicad_default"
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 203.2)
+    )
+    (circuit 
+      (use_layer Component Copper)
+    )
+  )
+  (class Power
+    GND VCC
+    (clearance_class Power)
+    (via_rule Power)
+    (rule
+      (width 1000.0)
+    )
+    (circuit 
+      (use_layer Component Copper)
+    )
+  )
+)
