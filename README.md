@@ -115,11 +115,11 @@ Qty|Reference(s)|Value
 5|C39-C43|1.0 uF
 2|C44, C45|270 pF
 3|C46, C47, C50|10 uF
-1||D1|BICOLOR LED
-1||J1|Conn_01x02_Male
-1||J2|Conn_01x06_Male
-1||J3|Conn_02x08_Counter_Clockwise
-1||J4|DIN-5
+1|D1|BICOLOR LED
+1|J1|Conn_01x02_Male
+1|J2|Conn_01x06_Male
+1|J3|Conn_02x08_Counter_Clockwise
+1|J4|DIN-5
 1|J5|Conn_01x03_Male
 1|J6|Conn_02x04_Counter_Clockwise
 1|J7|Conn_02x20_Odd_Even
