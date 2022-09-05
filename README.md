@@ -105,73 +105,75 @@ Jumper J1, Interrupt Select
 
 ### Mainboard
 
-Quantity|Ref|Value|Part
---------|--------|----|--------
-1|BT2||CR2032 COIN CELL HOLDER
-2|C1,C46|22 uF|Radial Electrolytic Capacitor
-5|C13,C22,C25,C26,C32|1.0 uF|Radial Electrolytic Capacitor
-35|C2,C4,C5,C7-C12,C14-C18,C20,C21,C23,C28-C31,C33-C42,C48,C53-C56|0.1 uF|Film/Ceramic Capacitor
-3|C3,C51,C52|10 uF|Radial Electrolytic Capacitor
-2|C43,C44|33 pF|Ceramic Capacitor
-1|C47|220 uF|Radial Electrolytic Capacitor
-3|C49,C50|270 uF|Ceramic Capacitor
-1|D2|BICOLOR LED|LED
-|J1|2x4|Pin header
-2|J2,J3|DB9_Male|DB9 Male Connector
-|J4|IEC PORT|DIN 5 pin Connector
-|J5|2x8|Pin header
-1|J6|2x20|Pin header
-|J7|1x3|Pin header
-|J8|RCA Jack|RCA Jack
-|J9|3.5mm stereo Jack|3.5mm stereo Jack
-|K1|1x3|Pin header
-1|K2|1x3|Pin header
-1|K3|1x3|Pin header
-|L1|INDUCTOR (BEAD)|Ferrite Bead
-|P1|POWER|SBC-rescue:CONN_4-6x0x-6U-cache
-|P2|1x2|SBC-rescue:CONN_2-6x0x-6U-cache
-1|P3|4MHZ OSC|1/2 can osc
-1|P4|1.8432 OSC|1/2 can osc
-|P5|2x5|Pin Header
-|P9|2x2 |Pin Header
-1|Q2|2N3904|NPN Transistor
-1|R1|10|Resistor
-3|R10,R11,R12|1000|Resistor
-5|R2,R13-R16|10K|Resistor
-1|R3|100|Resistor
-4|,R5,R17-19|1K|Resistor
-1|R6|0|Resistor
-1|R7|470|Resistor
-2|R8,R9|75|Resistor
-2|RR1,RR3|4700|6 pin Resistor Net
-1|RR2|1000|6 pin Resistor Net
-1|RR4|4700|9 pin Resistor Net
-2|RV1,RV2|4700|Trim Pot
-1|U1|74LS06N|IC
-1|U10|16C550|IC
-1|U12|DS1302|IC
-|U13|MAX232|IC
-1|U14|27C512|IC
-2|U15,U17|GAL16V8|IC
-1|U16|GAL20V8|IC
-1|U19|74LS244|IC
-|U2|6c4008|IC
-1|U25|TMS9918|IC
-3|U26-U28|74LS574|IC
-1|U29|74LS04|IC
-1|U3|74LS32|IC
-|U30|62256|IC
-1|U32|74LS393|IC
-1|U34|AY-3-8910|IC
-2|U36,U37|W65C22NxP|IC
-1|U38|7406|IC
-1|U4|658C16|IC
-1|U5|27C256|IC
-1|U7|74LS14|IC
-1|U8|74LS373|IC
-5|U9,U18,U20,U21,U23|74LS245|IC
-1|X1|CRYSTAL 32.768 KHz|Crystal
-1|X2|10.7 MHz|Crystal
+Qty|Reference(s)|Value
+--------|--------|----------
+1|BT1|Battery_Cell
+35|C1-C33, C37, C49|0.1 uF
+2|C34, C35|33 pF
+2|C36, C48|22 uF
+1|C38|220 uF
+5|C39-C43|1.0 uF
+2|C44, C45|270 pF
+3|C46, C47, C50|10 uF
+1||D1|BICOLOR LED
+1||J1|Conn_01x02_Male
+1||J2|Conn_01x06_Male
+1||J3|Conn_02x08_Counter_Clockwise
+1||J4|DIN-5
+1|J5|Conn_01x03_Male
+1|J6|Conn_02x04_Counter_Clockwise
+1|J7|Conn_02x20_Odd_Even
+1|J8|AudioJack3
+2|J9, J10|DB9_Male
+1|K1|Conn_01x03_Male
+1|K2|Conn_01x03_Male
+1|K3|Conn_01x03_Male
+1|L1|INDUCTOR (BEAD)
+1|P1|Conn_02x05_Odd_Even
+1|P2|Conn_02x02_Odd_Even
+1|P3|Screw_Terminal_01x02
+1|P4|Conn_01x02_Male
+1|P5|Oscillator:CXO_DIP8
+1|Q1|2N3904
+1|R1|0 ohm
+1|R2|470 ohm
+2|R3, R4|75 ohm
+3|R5, R6, R7|1K ohm
+4|R8, R9, R10, R18|1K ohm
+5|R11, R12, R13, R14, R17|10K ohm
+1|R15|100 ohm
+1|R16|10 ohm
+1|RR1|1K ohm Bussed 6 pin
+2|RR2, RR3|4700 ohm Bussed 6 pin
+1|RR4|4700 ohm Bussed 10 pin
+2|RV1, RV2|4700 ohm variable
+1|U1|74LS393
+1|U2|7406
+1|U3|74LS06N
+1|U4|74F14  (should be F)
+1|U5|74LS04
+1|U6|TMS9918
+1|U7|74LS574
+2|U8, U9|74LS574
+1|U10|RAM_32KO
+1|U11|74LS32
+2|U12, U14|GAL16V8 (7ns)
+1|U13|GAL20V8 (7ns)
+1|U15|16550
+1|U16|DS1302
+1|U17|MAX232
+2|U18, U19|W65C22NxP
+5|U20, U22, U23, U24, U31|74LS245
+1|U21|74LS244
+1|U25|AY-3-8910
+1|U26|SRAM_512KO
+1|U27|658C16
+1|U28|27C256
+1|U29|27C512
+1|U30|74LS373
+1|X1|10.7 MHz
+1|X2|CXO_DIP8
+1|X3|CRYSTAL 32.768 KHz
 
 
 
